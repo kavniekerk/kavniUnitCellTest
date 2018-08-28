@@ -1,9 +1,44 @@
-a = 0.040;                                       // the "pitch", or distance between GEM pillars, in mm
+// *********************************************************************
+// mmGasUnitCellTestCurveDefault.geo
+//
+// Description:
+// Geometry file for a MM cell.
+// This cell can be repeated any number of times within Garfield 
+// to construct an arbitrarily large MM
+//
+// *********************************************************************  
+
+// update master branch again
+
+Include "mmGasComponentLabel.pro";
+// Include "mmGasMeshingOptions.pro";
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/// MMGASSTRWIRE GEOMETRY MODULE
+//
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/// GENERAL INFORMATION
+//
+// mmGasUnitCellTestCurveDefault.geo
+//
+// Description
+//
+// References
+//
+// See also
+//
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// CONSTANTS
+
+a = 0.045;                                       // the "pitch", or distance between GEM pillars, in mm
 
 mwf = 1;                                         // meshWindow_factor
 
 mm = 1;                                          // geometrical scaling
-rW = 0.009 * mm;                                 // R of Wiremesh, in microns
+rW = 0.015 * mm;                                 // R of Wiremesh, in microns
 hp0 = 0.0225;                                    // half pitch of the window, in mm
 hp = 0.0225 * mm - 0*rW/mwf * mm;                // half pitch of the window, in microns
 
@@ -97,8 +132,8 @@ sl_wire_exterior_surface_1a[] = newreg; Surface Loop(sl_wire_exterior_surface_1a
 // vol_1a_wire = newv; Compound Volume(vol_1a_wire) = { tmpab_1_1[1], tmpab_1_2[1] };
 vol_1a_wire = newreg; Volume(vol_1a_wire) = sl_wire_exterior_surface_1a[];
 
-physvol_1a_wire = newreg; Physical Volume(physvol_1a_wire) = vol_1a_wire;
-physsurf_1a_wire = newreg; Physical Surface(physsurf_1a_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_1_1_2[0] };
+Physical Volume(physvol_1a_wire) = vol_1a_wire;
+Physical Surface(physsurf_1a_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_1_1_2[0] };
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,8 +186,8 @@ sl_wire_exterior_surface_1b[] = newreg; Surface Loop(sl_wire_exterior_surface_1b
 // vol_1b_wire = newreg; Compound Volume(vol_1b_wire) = { tmpbb_1_1[1], tmpbb_1_2[1] };
 vol_1b_wire = newreg; Volume(vol_1b_wire) = sl_wire_exterior_surface_1b[];
 
-physvol_1b_wire = newreg; Physical Volume(physvol_1b_wire) = vol_1b_wire;
-physsurf_1b_wire = newreg; Physical Surface(physsurf_1b_wire) = { sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0] };
+Physical Volume(physvol_1b_wire) = vol_1b_wire;
+Physical Surface(physsurf_1b_wire) = { sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0] };
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -208,10 +243,10 @@ sl_wire_exterior_surface_2a[] = newreg; Surface Loop(sl_wire_exterior_surface_2a
 // vol_2a_wire2 = newreg; Volume(vol_2a_wire2) = { tmpab_2_2[1] };
 vol_2a_wire = newreg; Volume(vol_2a_wire) = sl_wire_exterior_surface_2a[];
 
-physvol_2a_wire = newreg; Physical Volume(physvol_2a_wire) = vol_2a_wire;
+Physical Volume(physvol_2a_wire) = vol_2a_wire;
 // physvol_2a_wire1 = newreg; Physical Volume(physvol_2a_wire1) = vol_2a_wire1;
 // physvol_2a_wire2 = newreg; Physical Volume(physvol_2a_wire2) = vol_2a_wire2;
-physsurf_2a_wire = newreg; Physical Surface(physsurf_2a_wire) = { saaf_2_2_1[0], sab_2_1[], sab_2_2[], sabf_2_2_2[0] };
+Physical Surface(physsurf_2a_wire) = { saaf_2_2_1[0], sab_2_1[], sab_2_2[], sabf_2_2_2[0] };
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -269,10 +304,10 @@ sl_wire_exterior_surface_2b[] = newreg; Surface Loop(sl_wire_exterior_surface_2b
 // vol_2b_wire2 = newreg; Volume(vol_2b_wire2) = { tmpbb_2_2[1] };
 vol_2b_wire = newreg; Volume(vol_2b_wire) = sl_wire_exterior_surface_2b[];
 
-physvol_2b_wire = newreg; Physical Volume(physvol_2b_wire) = vol_2b_wire;
+Physical Volume(physvol_2b_wire) = vol_2b_wire;
 // physvol_2b_wire1 = newreg; Physical Volume(physvol_2b_wire1) = vol_2b_wire1;
 // physvol_2b_wire2 = newreg; Physical Volume(physvol_2b_wire2) = vol_2b_wire2;
-physsurf_2b_wire = newreg; Physical Surface(physsurf_2b_wire) = { sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
+Physical Surface(physsurf_2b_wire) = { sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
 
 
 /*

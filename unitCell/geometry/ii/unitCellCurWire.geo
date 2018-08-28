@@ -36,7 +36,7 @@ ttD = ( meshLevel - 0.005 );                               // top of dielectric 
 tteD1 = ( ttD - 0.001 );                                   // etched pillar level 1
 tteD2 = ( 0.5 * (ttD - tteD1) + tteD1 );                   // etched pillar level 2
 
-a = 0.080;                                                 // the "pitch", or distance between unitCellCurWire pillars, in mm
+a = 0.050;                                                 // the "pitch", or distance between unitCellCurWire pillars, in mm
 
 //----------------------------------------------------------
 // vertical parameters
@@ -56,8 +56,8 @@ lP = 0.1;                                                  // distance from lowe
 mwf = 1;                                                   // meshWindow_factor
 mm = 1;                                                    // geometrical scaling
 rW = 0.009 * mm;                                           // radius of Wiremesh, in microns
-p_0 = 0.040;                                               // pitch of the window, in mm
-p = 0.040 * mm - 0 * rW/mwf * mm;                          // pitch of the window, in microns
+p_0 = 0.025;                                               // pitch of the window, in mm
+p = 0.025 * mm - 0 * rW/mwf * mm;                          // pitch of the window, in microns
 R = (p * p + rW * rW)/(2 * rW);                            // radius
 alpha = Asin( (p/R) );                                     // angle in radians
 totalGridSize = (a - 0.01)/2;                              // total grid size, in mm, 0.4
@@ -70,11 +70,11 @@ wireLength = ( totalGridSize / numberWires ) / 2;          // wire length
 Number_Units_x = 0;                                        // number of units, 1
 Number_Units_y = 0;                                        // number of units, 1
 
-geoWCXr = 2*rW;                                            // y-direction wire in x radial direction
-geoWCYr = 2*rW;                                            // x-direction wire in y radial direction
+geoWCXr = 0*rW;                                            // y-direction wire in x radial direction
+geoWCYr = 0*rW;                                            // x-direction wire in y radial direction
 
-geoWCXd = 2*rW;                                            // x-direction wire in x-direction
-geoWCYd = 2*rW;                                            // y-direction wire in y-direction
+geoWCXd = 0*rW;                                            // x-direction wire in x-direction
+geoWCYd = 0*rW;                                            // y-direction wire in y-direction
 
 x1SPWindFac2 = p*0.00;
 x2SPWindFac2 = p*0.00;
@@ -125,7 +125,7 @@ lcDielectricpillar = 0.0025;                               // characterization o
 lcEtchingpillar = 0.0025;                                  // characterization of dielectric etching
 lcCopperPlateBdry = 0.0025;                                // characterization of metal surfaces / anode
 lcExtElectrodeBdry = 0.005;                                // characterization of external electrode / cathode
-lcWireMesh = 0.001;                                        // characterization of wire electrode
+lcWireMesh = 0.0005;                                       // characterization of wire electrode
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1210,10 +1210,10 @@ vol_lower_cp = newreg; Volume(vol_lower_cp) = total_sl_lower_cp[];
 //----------------------------------------------------------
 // Physical Surfaces - periodic boundary conditions
 
-physsurf_bdh_1_1 = newreg; Physical Surface(physsurf_bdh_1_1) = { psbdh_1_1_bsurf1t, saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0], psbdh_1_1_bsurf1b };              // ps_side_gas1b, ps_bsurf2, pscp_up_border1, ps_side_gas1a,
-physsurf_bdh_1_2 = newreg; Physical Surface(physsurf_bdh_1_2) = { psbdh_1_2_bsurf3t, sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0], psbdh_1_2_bsurf3b };              // ps_side_gas2b, pscp_up_border2, ps_side_gas2a,
-physsurf_bdh_2_1 = newreg; Physical Surface(physsurf_bdh_2_1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[], sab_2_1[], sab_2_2[], sabf_2_2_2[], psbdh_2_1_bsurf4b };                // ps_side_gas3b, ps_bsurf5, pscp_up_border3, ps_side_gas3a,
-physsurf_bdh_2_2 = newreg; Physical Surface(physsurf_bdh_2_2) = { psbdh_2_2_bsurf6t, sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0], psbdh_2_2_bsurf6b };              // ps_side_gas4b, pscp_up_border4, ps_side_gas4a,
+physsurf_bdh_1_1 = newreg; Physical Surface(physsurf_bdh_1_1) = { psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b };               // ps_side_gas1b, ps_bsurf2, pscp_up_border1, ps_side_gas1a,
+physsurf_bdh_1_2 = newreg; Physical Surface(physsurf_bdh_1_2) = { psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b };               // ps_side_gas2b, pscp_up_border2, ps_side_gas2a,
+physsurf_bdh_2_1 = newreg; Physical Surface(physsurf_bdh_2_1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b };               // ps_side_gas3b, ps_bsurf5, pscp_up_border3, ps_side_gas3a,
+physsurf_bdh_2_2 = newreg; Physical Surface(physsurf_bdh_2_2) = { psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b };               // ps_side_gas4b, pscp_up_border4, ps_side_gas4a,
 
 //----------------------------------------------------------
 // Physical surfaces - container surface

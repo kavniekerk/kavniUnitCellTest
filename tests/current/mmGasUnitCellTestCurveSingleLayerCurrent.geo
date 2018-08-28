@@ -1,5 +1,5 @@
 // *********************************************************************
-// mmGasRotationTest.geo
+// mmGasUnitCellTestCurveSingleLayerCurrent.geo
 //
 // Description:
 // Geometry file for a MM cell.
@@ -21,7 +21,7 @@ Include "mmGasComponentLabel.pro";
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// GENERAL INFORMATION
 //
-// unitCellCurWire.geo
+// mmGasUnitCellTestCurveSingleLayerCurrent.geo
 //
 // Description
 //
@@ -35,7 +35,7 @@ Include "mmGasComponentLabel.pro";
 
 meshLevel = 0.10;                                          // mesh level, in mm
 meshWindow = 0.020;                                        // mesh window, in mm
-a = 0.045;                                                 // the "pitch", or distance between unitCellCurWire pillars, in mm
+a = 0.050;                                                 // the "pitch", or distance between unitCellCurWire pillars, in mm
 
 //----------------------------------------------------------
 // pillar parameters
@@ -75,9 +75,9 @@ lP = 0.02;                                                 // distance from lowe
 mwf = 1;                                                   // meshWindow_factor
 mm = 1;                                                    // geometrical scaling
 
-rW = 0.009 * mm;                                           // R of Wiremesh, in microns
-hp0 = 0.0225;                                              // half pitch of the window, in mm
-hp = 0.0225 * mm - 0*rW/mwf * mm;                           // half pitch of the window, in microns
+rW = 0.0085 * mm;                                          // R of Wiremesh, in microns
+hp0 = 0.025;                                               // half pitch of the window, in mm
+hp = 0.025 * mm - 0*rW/mwf * mm;                           // half pitch of the window, in microns
 
 p = hp0;                                                   // half pitch of the window, in mm
 
@@ -94,19 +94,19 @@ wireLength = ( totalGridSize / numberWires ) / 2;          // wire length
 numberUnitsX = 0;                                          // number of units, 1
 numberUnitsY = 0;                                          // number of units, 1
 
-geoWCXr = 2*rW;                                            // y-direction wire in x radial direction
-geoWCYr = 2*rW;                                            // x-direction wire in y radial direction
+geoWCXr = 0*rW;                                            // y-direction wire in x radial direction
+geoWCYr = 0*rW;                                            // x-direction wire in y radial direction
 
-geoWCXd = 2*rW;                                            // x-direction wire in x-direction
-geoWCYd = 2*rW;                                            // y-direction wire in y-direction
+geoWCXd = 0*rW;                                            // x-direction wire in x-direction
+geoWCYd = 0*rW;                                            // y-direction wire in y-direction
 
 spFacR1 = 0.00;
 spFacR2 = 0.00;
 
-x1SPWindFac = p*1.00;
-x2SPWindFac = p*1.00;
-y1SPWindFac = p*1.00;
-y2SPWindFac = p*1.00;
+x1SPWindFac = p*0.00;
+x2SPWindFac = p*0.00;
+y1SPWindFac = p*0.00;
+y2SPWindFac = p*0.00;
 
 spFac1 = p*0.00;
 spFac2 = p*0.00;
@@ -164,7 +164,7 @@ geofy = 1;                                                 // geometric_factor
   lcEtchingPillar = 0.0025;                                                                                                 // characterization of dielectric etching
   lcCopperPlateBdry = 0.0025;                                                                                               // characterization of metal surfaces / anode
   lcExtElectrodeBdry = 0.0050;                                                                                              // characterization of external electrode / cathode
-  lcWireMesh = 0.0010;                                                                                                      // characterization of wire electrode
+  lcWireMesh = 0.001;                                                                                                      // characterization of wire electrode
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,7 +193,7 @@ saaf_1_1_1[] = {};
 saaf_1_1_1[] = tmpaa_1_1[0];
 
 
-ptsab_1_1 = newp; Point(ptsab_1_1) = { p+p +1.00*spFac1, p+p +1.00*spFac1, -Rtn+rW +meshLevel*mm };
+// ptsab_1_1 = newp; Point(ptsab_1_1) = { p+p +1.00*spFac1, p+p +1.00*spFac1, -Rtn+rW +meshLevel*mm };
 
 tmpab_1_1[] = Extrude {{x1SPWindFac2,0,0}, {0,-1,0}, { p+p +1.00*spFac1, p+p +1.00*spFac1, -Rtn+rW +meshLevel*mm }, 1.00*alpha } {
   Surface{tmpaa_1_1[0]};
@@ -207,7 +207,7 @@ sab_1_1[] += tmpab_1_1[{2:4}];
 // Wire 1a2
 
 
-ptsab_1_2 = newp; Point(ptsab_1_2) = { -p+p +1.00*spFac1, p+p +1.00*spFac1, Rtp-rW +meshLevel*mm };
+// ptsab_1_2 = newp; Point(ptsab_1_2) = { -p+p +1.00*spFac1, p+p +1.00*spFac1, Rtp-rW +meshLevel*mm };
 
 tmpab_1_2[] = Extrude {{x2SPWindFac2,0,0}, {0,1,0}, { -p+p +1.00*spFac1, p+p +1.00*spFac1, Rtp-rW +meshLevel*mm }, 1.00*alpha} {
   Surface{tmpab_1_1[0]};
@@ -220,12 +220,12 @@ sab_1_2[] += tmpab_1_2[{2:4}];
 sabf_2_1_2[] = {};
 sabf_2_1_2[] = {tmpab_1_2[0]};
 
-sl_wire_exterior_surface_1a[] = newreg; Surface Loop(sl_wire_exterior_surface_1a) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0] };
+// sl_wire_exterior_surface_1a[] = newreg; Surface Loop(sl_wire_exterior_surface_1a) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0] };
 // vol_1a_wire = newv; Compound Volume(vol_1a_wire) = { tmpab_1_1[1], tmpab_1_2[1] };
-vol_1a_wire = newreg; Volume(vol_1a_wire) = sl_wire_exterior_surface_1a[];
+// vol_1a_wire = newreg; Volume(vol_1a_wire) = sl_wire_exterior_surface_1a[];
 
-Physical Volume(physvol_1a_wire) = vol_1a_wire;
-Physical Surface(physsurf_1a_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0] };
+// Physical Volume(physvol_1a_wire) = vol_1a_wire;
+// Physical Surface(physsurf_1a_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0] };
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -254,7 +254,7 @@ sbaf_1_1_1[] = {};
 sbaf_1_1_1[] = tmpba_1_1[0];
 
 
-ptsbb_1_1 = newp; Point(ptsbb_1_1) = { -p+p +1.00*spFac1, -p+p +1.00*spFac1, -Rtn+rW +meshLevel*mm };
+// ptsbb_1_1 = newp; Point(ptsbb_1_1) = { -p+p +1.00*spFac1, -p+p +1.00*spFac1, -Rtn+rW +meshLevel*mm };
 
 tmpbb_1_1[] = Extrude {{x1SPWindFac2,0,0}, {0,1,0}, { -p+p +1.00*spFac1, -p+p +1.00*spFac1, -Rtn+rW +meshLevel*mm }, 1.00*alpha } {
   Surface{tmpba_1_1[0]};
@@ -268,7 +268,7 @@ sbb_1_1[] += tmpbb_1_1[{2:4}];
 // Wire 1b2
 
 
-ptsbb_1_2 = newp; Point(ptsbb_1_2) = { p+p +1.00*spFac1, -p+p +1.00*spFac1, Rtp-rW +meshLevel*mm };
+// ptsbb_1_2 = newp; Point(ptsbb_1_2) = { p+p +1.00*spFac1, -p+p +1.00*spFac1, Rtp-rW +meshLevel*mm };
 
 tmpbb_1_2[] = Extrude {{x2SPWindFac2,0,0}, {0,-1,0}, { p+p +1.00*spFac1, -p+p +1.00*spFac1, Rtp-rW +meshLevel*mm }, 1.00*alpha} {
   Surface{tmpbb_1_1[0]};
@@ -280,12 +280,12 @@ sbb_1_2[] += tmpbb_1_2[{2:4}];
 sbbf_2_1_2[] = {};
 sbbf_2_1_2[] = {tmpbb_1_2[0]};
 
-sl_wire_exterior_surface_1b[] = newreg; Surface Loop(sl_wire_exterior_surface_1b) = { sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0] };
+// sl_wire_exterior_surface_1b[] = newreg; Surface Loop(sl_wire_exterior_surface_1b) = { sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0] };
 // vol_1b_wire = newreg; Compound Volume(vol_1b_wire) = { tmpbb_1_1[1], tmpbb_1_2[1] };
-vol_1b_wire = newreg; Volume(vol_1b_wire) = sl_wire_exterior_surface_1b[];
+// vol_1b_wire = newreg; Volume(vol_1b_wire) = sl_wire_exterior_surface_1b[];
 
-Physical Volume(physvol_1b_wire) = vol_1b_wire;
-Physical Surface(physsurf_1b_wire) = { sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0] };
+// Physical Volume(physvol_1b_wire) = vol_1b_wire;
+// Physical Surface(physsurf_1b_wire) = { sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0] };
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -314,7 +314,7 @@ saaf_2_2_1[] = {};
 saaf_2_2_1[] = tmpaa_2_1[0];
 
 
-ptsab_2_1 = newp; Point(ptsab_2_1) = { p+p +1.00*spFac2, p+p +1.00*spFac2, Rtp-rW +meshLevel*mm };
+// ptsab_2_1 = newp; Point(ptsab_2_1) = { p+p +1.00*spFac2, p+p +1.00*spFac2, Rtp-rW +meshLevel*mm };
 
 tmpab_2_1[] = Extrude {{y1SPWindFac2,0,0}, {-1,0,0}, { p+p +1.00*spFac2, p+p +1.00*spFac2, Rtp-rW +meshLevel*mm }, 1.00*alpha } {
   Surface{tmpaa_2_1[0]};
@@ -328,7 +328,7 @@ sab_2_1[] += tmpab_2_1[{2:4}];
 // Wire 2a2
 
 
-ptsab_2_2 = newp; Point(ptsab_2_2) = { p+p +1.00*spFac2, -p+p +1.00*spFac2, -Rtn+rW +meshLevel*mm };
+// ptsab_2_2 = newp; Point(ptsab_2_2) = { p+p +1.00*spFac2, -p+p +1.00*spFac2, -Rtn+rW +meshLevel*mm };
 
 tmpab_2_2[] = Extrude {{y2SPWindFac2,0,0}, {1,0,0}, { p+p +1.00*spFac2, -p+p +1.00*spFac2, -Rtn+rW +meshLevel*mm }, 1.00*alpha} {
   Surface{tmpab_2_1[0]};
@@ -342,15 +342,15 @@ sabf_2_2_2[] = {};
 sabf_2_2_2[] = {tmpab_2_2[0]};
 
 
-sl_wire_exterior_surface_2a[] = newreg; Surface Loop(sl_wire_exterior_surface_2a) = { saaf_2_2_1[0], sab_2_1[], sab_2_2[], sabf_2_2_2[0] };
+// sl_wire_exterior_surface_2a[] = newreg; Surface Loop(sl_wire_exterior_surface_2a) = { saaf_2_2_1[0], sab_2_1[], sab_2_2[], sabf_2_2_2[0] };
 // vol_2a_wire1 = newreg; Volume(vol_2a_wire1) = { tmpab_2_1[1] };
 // vol_2a_wire2 = newreg; Volume(vol_2a_wire2) = { tmpab_2_2[1] };
-vol_2a_wire = newreg; Volume(vol_2a_wire) = sl_wire_exterior_surface_2a[];
+// vol_2a_wire = newreg; Volume(vol_2a_wire) = sl_wire_exterior_surface_2a[];
 
-Physical Volume(physvol_2a_wire) = vol_2a_wire;
+// Physical Volume(physvol_2a_wire) = vol_2a_wire;
 // physvol_2a_wire1 = newreg; Physical Volume(physvol_2a_wire1) = vol_2a_wire1;
 // physvol_2a_wire2 = newreg; Physical Volume(physvol_2a_wire2) = vol_2a_wire2;
-Physical Surface(physsurf_2a_wire) = { saaf_2_2_1[0], sab_2_1[], sab_2_2[], sabf_2_2_2[0] };
+// Physical Surface(physsurf_2a_wire) = { saaf_2_2_1[0], sab_2_1[], sab_2_2[], sabf_2_2_2[0] };
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -379,7 +379,7 @@ sbaf_2_2_1[] = {};
 sbaf_2_2_1[] = tmpba_2_1[0];
 
 
-ptsab_2_1 = newp; Point(ptsab_2_1) = { -p+p +1.00*spFac2, -p+p +1.00*spFac2, Rtp-rW +meshLevel*mm };
+// ptsab_2_1 = newp; Point(ptsab_2_1) = { -p+p +1.00*spFac2, -p+p +1.00*spFac2, Rtp-rW +meshLevel*mm };
 
 tmpbb_2_1[] = Extrude {{y1SPWindFac2,0,0}, {1,0,0}, { -p+p +1.00*spFac2, -p+p +1.00*spFac2, Rtp-rW +meshLevel*mm }, 1.00*alpha } {
   Surface{tmpba_2_1[0]};
@@ -393,7 +393,7 @@ sbb_2_1[] += tmpbb_2_1[{2:4}];
 // Wire 2b2
 
 
-ptsab_2_2 = newp; Point(ptsab_2_2) = { -p+p +1.00*spFac2, p+p +1.00*spFac2, -Rtn+rW +meshLevel*mm };
+// ptsab_2_2 = newp; Point(ptsab_2_2) = { -p+p +1.00*spFac2, p+p +1.00*spFac2, -Rtn+rW +meshLevel*mm };
 
 tmpbb_2_2[] = Extrude {{y2SPWindFac2,0,0}, {-1,0,0}, { -p+p +1.00*spFac2, p+p +1.00*spFac2, -Rtn+rW +meshLevel*mm }, 1.00*alpha} {
   Surface{tmpbb_2_1[0]};
@@ -407,15 +407,15 @@ sbbf_2_2_2[] = {};
 sbbf_2_2_2[] = {tmpbb_2_2[0]};
 
 
-sl_wire_exterior_surface_2b[] = newreg; Surface Loop(sl_wire_exterior_surface_2b) = { sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
+// sl_wire_exterior_surface_2b[] = newreg; Surface Loop(sl_wire_exterior_surface_2b) = { sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
 // vol_2b_wire1 = newreg; Volume(vol_2b_wire1) = { tmpbb_2_1[1] };
 // vol_2b_wire2 = newreg; Volume(vol_2b_wire2) = { tmpbb_2_2[1] };
-vol_2b_wire = newreg; Volume(vol_2b_wire) = sl_wire_exterior_surface_2b[];
+// vol_2b_wire = newreg; Volume(vol_2b_wire) = sl_wire_exterior_surface_2b[];
 
-Physical Volume(physvol_2b_wire) = vol_2b_wire;
+// Physical Volume(physvol_2b_wire) = vol_2b_wire;
 // physvol_2b_wire1 = newreg; Physical Volume(physvol_2b_wire1) = vol_2b_wire1;
 // physvol_2b_wire2 = newreg; Physical Volume(physvol_2b_wire2) = vol_2b_wire2;
-Physical Surface(physsurf_2b_wire) = { sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
+// Physical Surface(physsurf_2b_wire) = { sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -665,6 +665,7 @@ For q In {1:2}
 EndFor
 
 
+/*
 For q In {2:2}
   For r In {1:2}
     For s In {2:2}
@@ -1051,6 +1052,8 @@ For q In {2:2}
     EndFor
   EndFor
 EndFor
+*/
+
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1478,10 +1481,10 @@ pscpLowBorder4 = newreg; Plane Surface(pscpLowBorder4) = {llcpLowBorder4};
 //----------------------------------------------------------
 // Face physsurfBdh_1_1 (Corner 1 - Corner 2)
 
-l1bdh_1_1_bsurft1 = newl; Line(l1bdh_1_1_bsurft1) = {pexet3, pbdhab_1_2_2[1]};                      // top line
-l2bdh_1_1_bsurft1 = newl; Line(l2bdh_1_1_bsurft1) = {pexet1, p1b1_3};                               // top circle
-l1bdh_1_1_bsurfb1 = newl; Line(l1bdh_1_1_bsurfb1) = {ptl2c2, pbdhbb_1_1_2[1]};                      // bottom line
-l2bdh_1_1_bsurfb1 = newl; Line(l2bdh_1_1_bsurfb1) = {ptl2c1, p2b1_1};                               // bottom circle
+l1bdh_1_1_bsurft1 = newl; Line(l1bdh_1_1_bsurft1) = {pexet3, pbdhab_1_2_2[1]};                     // top line
+l2bdh_1_1_bsurft1 = newl; Line(l2bdh_1_1_bsurft1) = {pexet1, p1b1_3};                              // top circle
+l1bdh_1_1_bsurfb1 = newl; Line(l1bdh_1_1_bsurfb1) = {ptl2c2, pbdhbb_1_1_2[1]};                     // bottom line
+l2bdh_1_1_bsurfb1 = newl; Line(l2bdh_1_1_bsurfb1) = {ptl2c1, p2b1_1};                              // bottom circle
 
 
 llbdh_1_1_bsurf1t = newreg; Line Loop(llbdh_1_1_bsurf1t) = { lexet1, l1bdh_1_1_bsurft1, ll_bdhac0_1_2_2[0], ll_bdhac1_1_2_2[0], -ll_bdhbt_1_1_1[0], -ll_bdhbt_1_1_2[0], -l2bdh_1_1_bsurft1 };
@@ -1509,8 +1512,8 @@ psbdh_1_2_bsurf3b = newreg; Plane Surface(psbdh_1_2_bsurf3b) = { llbdh_1_2_bsurf
 //----------------------------------------------------------
 // Face physsurfBdh_2_1 (Corner 3 - Corner 4)
 
-l1bdh_2_1_bsurft4 = newl; Line(l1bdh_2_1_bsurft4) = {pexet6, pbdhbb_2_2_2[1]};
-l1bdh_2_1_bsurfb4 = newl; Line(l1bdh_2_1_bsurfb4) = {ptl2c4, pbdhab_2_1_2[1]};
+l1bdh_2_1_bsurft4 = newl; Line(l1bdh_2_1_bsurft4) = {pexet6, pbdhbb_2_2_2[1]};                     // top line, top circle
+l1bdh_2_1_bsurfb4 = newl; Line(l1bdh_2_1_bsurfb4) = {ptl2c4, pbdhab_2_1_2[1]};                     // bottom line, bottom circle
 
 llbdh_2_1_bsurf4t = newreg; Line Loop(llbdh_2_1_bsurf4t) = { lexet4, l1bdh_2_1_bsurft4, -ll_bdhbc1_2_2_2[0], -ll_bdhbc0_2_2_2[0], -ll_bdhat_2_1_1[0], -ll_bdhat_2_1_2[0], -l1bdh_1_2_bsurft1 };
 llbdh_2_1_bsurf4b = newreg; Line Loop(llbdh_2_1_bsurf4b) = { lcpbub3a, l1bdh_2_1_bsurfb4, -ll_bdhab_2_1_1[0], -ll_bdhab_2_1_2[0], l2a1_2, l2a1_3, -l1bdh_1_2_bsurfb1 };
@@ -1629,10 +1632,10 @@ vol_lower_cp = newreg; Volume(vol_lower_cp) = total_sl_lower_cp[];
 //----------------------------------------------------------
 // Physical Surfaces - periodic boundary conditions
 
-physsurfBdh_1_1 = newreg; Physical Surface(physsurfBdh_1_1) = { psbdh_1_1_bsurf1t, saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0], psbdh_1_1_bsurf1b };                // psSideGas1b, psBsurf2, pscpUpBorder1, psSideGas1a,
-physsurfBdh_1_2 = newreg; Physical Surface(physsurfBdh_1_2) = { psbdh_1_2_bsurf3t, sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0], psbdh_1_2_bsurf3b };                // psSideGas2b, pscpUpBorder2, psSideGas2a,
-physsurfBdh_2_1 = newreg; Physical Surface(physsurfBdh_2_1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[], sab_2_1[], sab_2_2[], sabf_2_2_2[], psbdh_2_1_bsurf4b };                  // psSideGas3b, psBsurf5, pscpUpBorder3, psSideGas3a,
-physsurfBdh_2_2 = newreg; Physical Surface(physsurfBdh_2_2) = { psbdh_2_2_bsurf6t, sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0], psbdh_2_2_bsurf6b };                // psSideGas4b, pscpUpBorder4, psSideGas4a,
+physsurf_bdh_1_1 = newreg; Physical Surface(physsurf_bdh_1_1) = { psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b };               // ps_side_gas1b, ps_bsurf2, pscp_up_border1, ps_side_gas1a,
+physsurf_bdh_1_2 = newreg; Physical Surface(physsurf_bdh_1_2) = { psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b };               // ps_side_gas2b, pscp_up_border2, ps_side_gas2a,
+physsurf_bdh_2_1 = newreg; Physical Surface(physsurf_bdh_2_1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b };               // ps_side_gas3b, ps_bsurf5, pscp_up_border3, ps_side_gas3a,
+physsurf_bdh_2_2 = newreg; Physical Surface(physsurf_bdh_2_2) = { psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b };               // ps_side_gas4b, pscp_up_border4, ps_side_gas4a,
 
 //----------------------------------------------------------
 // Physical surfaces - container surface

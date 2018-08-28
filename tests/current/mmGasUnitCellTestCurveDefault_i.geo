@@ -1,46 +1,11 @@
-// *********************************************************************
-// mmGasUnitCellTestCurveStrCur.geo
-//
-// Description:
-// Geometry file for a MM cell.
-// This cell can be repeated any number of times within Garfield 
-// to construct an arbitrarily large MM
-//
-// *********************************************************************  
-
-// update master branch again
-
-Include "mmGasComponentLabel.pro";
-// Include "mmGasMeshingOptions.pro";
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/// MMGASSTRWIRE GEOMETRY MODULE
-//
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/// GENERAL INFORMATION
-//
-// mmGasUnitCellTestCurveStrCur.geo
-//
-// Description
-//
-// References
-//
-// See also
-//
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// CONSTANTS
-
-a = 0.045;                                        // the "pitch", or distance between GEM pillars, in mm
+a = 0.040;                                        // the "pitch", or distance between GEM pillars, in mm
 
 mwf = 1;                                          // mesh_window_factor
 
 mm = 1;                                           // geometrical scaling
 r_w = 0.010 * mm;                                 // R of Wiremesh, in microns
-hp_0 = 0.0225;                                    // half pitch of the window, in mm
-hp = 0.0225 * mm - 0*r_w/mwf * mm;                // half pitch of the window, in microns
+hp_0 = 0.010;                                     // half pitch of the window, in mm
+hp = 0.010 * mm - 0*r_w/mwf * mm;                 // half pitch of the window, in microns
 
 p = hp_0;                                         // half pitch of the window, in mm
 
@@ -50,12 +15,12 @@ alpha = Asin((p/R));                              // angle in radians
 mesh_level = 0.000;                               // mesh level, in mm
 mesh_window = 0.020;                              // mesh window, in mm
 
-x1_sp_wind_fac = p*0.10;
-x2_sp_wind_fac = p*0.10;
-y1_sp_wind_fac = p*0.10;
-y2_sp_wind_fac = p*0.10;
+x1_sp_wind_fac = p*1.00;
+x2_sp_wind_fac = p*1.00;
+y1_sp_wind_fac = p*1.00;
+y2_sp_wind_fac = p*1.00;
 
-sp_fac1 = p*0.10;
+sp_fac1 = p*1.00;
 
 x1_sp_wind_fac2 = p*0.00;
 x2_sp_wind_fac2 = p*0.00;
@@ -120,7 +85,7 @@ sb_1_1c[] = tmpb_1_1c[{2:4}];
 sb_1_2[] = {};
 tmpb_1_2a[] = {tmpb_1_1c[0]};
 
-tmpb_1_2b[] = Extrude {{x1_sp_wind_fac2,0,0},{0,-1,0},{p+1*sp_fac1,-p,Rtp-r_w}, alpha} {
+tmpb_1_2b[] = Extrude {{x1_sp_wind_fac2,0,0},{0,-1,0},{p+sp_fac1,-p,Rtp-r_w}, alpha} {
   Surface{tmpb_1_2a[0]}; 
 };
 
@@ -181,7 +146,7 @@ sa_2_1c[] = tmpa_2_1c[{2:4}];
 sa_2_2[] = {};
 tmpa_2_2a[] = {tmpa_2_1c[0]};
 
-tmpa_2_2b[] = Extrude {{0,y1_sp_wind_fac2,0},{1,0,0},{p+1*sp_fac1,-p+1*sp_fac1,-Rtn+r_w}, alpha} {
+tmpa_2_2b[] = Extrude {{0,y1_sp_wind_fac2,0},{1,0,0},{p+sp_fac1,-p+sp_fac1,-Rtn+r_w}, alpha} {
   Surface{tmpa_2_2a[0]}; 
 };
 
