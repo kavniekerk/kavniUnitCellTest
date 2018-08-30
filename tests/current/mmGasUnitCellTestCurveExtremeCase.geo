@@ -20,14 +20,14 @@ tC = 0.0035;                                     // copper thickness, in mm
 tD = 0.0035;                                     // dielectric thickness, in mm
 lE = 0.40;                                       // distance from GEM plates to upper exterior electrode, in mm
 lP = 0.02;                                       // distance from lower LEM plate to pad (readout) plane, in mm
-a = 0.045;                                       // the "pitch", or distance between GEM pillars, in mm
+a = 0.040;                                       // the "pitch", or distance between GEM pillars, in mm
 
 mwf = 1;                                         // mesh_window_factor
 
 mm = 1;                                          // geometrical scaling
-r_w = 0.009 * mm;                                // R of Wiremesh, in microns
-hp_0 = 0.01125;                                  // half pitch of the window, in mm
-hp = 0.01125 * mm - 0*r_w/mwf * mm;              // half pitch of the window, in microns
+r_w = 0.010 * mm;                                // R of Wiremesh, in microns
+hp_0 = 0.0100;                                   // half pitch of the window, in mm
+hp = 0.0100 * mm - 0*r_w/mwf * mm;               // half pitch of the window, in microns
 
 p = hp_0;                                        // half pitch of the window, in mm
 
@@ -35,32 +35,32 @@ R = (p * p + r_w * r_w)/( (2 * r_w) );           // R
 alpha = Asin((p/R));                             // angle in radians
 
 
-x1fracAngle1 = 0.258665;
-x1fracAngle2 = 0.51733;
-x1fracAngle3 = 0.51733;
-x1fracAngle4 = 0.258665;
+x1fracAngle1 = 0.5;
+x1fracAngle2 = 0.5;
+x1fracAngle3 = 0.5;
+x1fracAngle4 = 0.5;
 
-x2fracAngle1 = 0.258665;
-x2fracAngle2 = 0.51733;
-x2fracAngle3 = 0.51733;
-x2fracAngle4 = 0.258665;
+x2fracAngle1 = 0.5;
+x2fracAngle2 = 0.5;
+x2fracAngle3 = 0.5;
+x2fracAngle4 = 0.5;
 
-y1fracAngle1 = 0.258665;
-y1fracAngle2 = 0.51733;
-y1fracAngle3 = 0.51733;
-y1fracAngle4 = 0.258665;
+y1fracAngle1 = 0.5;
+y1fracAngle2 = 0.5;
+y1fracAngle3 = 0.5;
+y1fracAngle4 = 0.5;
 
-y2fracAngle1 = 0.258665;
-y2fracAngle2 = 0.51733;
-y2fracAngle3 = 0.51733;
-y2fracAngle4 = 0.258665;
+y2fracAngle1 = 0.5;
+y2fracAngle2 = 0.5;
+y2fracAngle3 = 0.5;
+y2fracAngle4 = 0.5;
 
 // fracAngle = 0.5;
 
-// CHECK alpha = 77.32 deg, angles split into 4, always add to 90 deg
+// CHECK alpha = 90.00 deg, angles split into 4, always add to 90 deg
 // CHECK total angle = 1
-// CHECK WIDTH 2*0.009 + 2*0.0125 + 2*0.01*0.10 = 0.045
-// CHECK HEIGHT 4*0.009 + 2*0.0125 = 0.061
+// CHECK WIDTH 2*0.010 + 2*0.0045 + 2*0.01*0.10 = 0.040
+// CHECK HEIGHT 4*0.010 + 2*0.0045 = 0.049
 // hence, top: -adjustment + radius
 // and, bottom: adjustment + radius
 // take half the adjustment as the value (radius)
@@ -95,17 +95,17 @@ y2_sp_wind_fac2 = p*0.00;
 Rtp = R + R*0.0;
 Rtn = R - R*0.0;
 
-sp1_fac_r1_ad = -0.01;
-sp1_fac_r2_ad = -0.0125;
+sp1_fac_r1_ad = +0.0045;
+sp1_fac_r2_ad = +0.0045;
 
-sp2_fac_r1_ad = -0.00625;
-sp2_fac_r2_ad = -0.0125;
+sp2_fac_r1_ad = +0.0045;
+sp2_fac_r2_ad = +0.0045;
 
-sp1_fac_r1 = 1.00*(Rtn-1*r_w) + sp1_fac_r1_ad;   // -Rtn+r_w
-sp1_fac_r2 = 1.00*(-Rtp+1*r_w) - sp1_fac_r2_ad;  // +Rtp-r_w
+sp1_fac_r1 = 1.00*(Rtn-1*r_w) - 3*sp1_fac_r1_ad;   // -Rtn+r_w
+sp1_fac_r2 = 1.00*(-Rtp+1*r_w) - 3*sp1_fac_r2_ad;  // +Rtp-r_w
 
-sp2_fac_r1 = 1.00*(Rtn-1*r_w) + sp2_fac_r1_ad;   // -Rtn+r_w
-sp2_fac_r2 = 1.00*(-Rtp+1*r_w) - sp2_fac_r2_ad;  // +Rtp-r_w
+sp2_fac_r1 = 1.00*(Rtn-1*r_w) - 3*sp2_fac_r1_ad;   // -Rtn+r_w
+sp2_fac_r2 = 1.00*(-Rtp+1*r_w) - 3*sp2_fac_r2_ad;  // +Rtp-r_w
 
 h_f = 0*r_w;                                     // Heightfactor
 
@@ -115,7 +115,7 @@ geo_f_y = 1;
 m = 0;
 n = 0;
 
-exPand = (6/6);
+exPand = (1/1);
 
 // Characteristic lengths
 
@@ -124,7 +124,6 @@ exPand = (6/6);
   LcWiremesh = 0.0001;
 
 
-/*
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////// Face 1a - half wire (y - z) extrude in x direction - Corner 3 to Corner 4
 // Wire 1a1
@@ -246,7 +245,7 @@ sae_1_2[] += tmpae_1_2[{2:4}];
 
 saef_1_1_2[] = {};
 saef_1_1_2[] = {tmpae_1_2[0]};
-*/
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////// Face 1b - half wire (y - z) extrude in x direction - Corner 1 to Corner 2
@@ -300,11 +299,11 @@ sbc_1_1[] += tmpbc_1_1[{2:4}];
 // sbc2_1_1[] += tmpbc2_1_1[{2:4}];
 
 
-ptsbd_1_1 = newp; Point(ptsbd_1_1) = { -p+p +0.00*p +3.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, -Rtn+r_w +1.00*mesh_level*mm +1.00*sp1_fac_r1 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 };
+ptsbd_1_1 = newp; Point(ptsbd_1_1) = { -p+p +0.00*p +1.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, -Rtn+r_w +1.00*mesh_level*mm +1.00*sp1_fac_r1 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 };
 
 
 
-tmpbd_1_1[] = Extrude {{x2_sp_wind_fac2,0,0}, {0,1,0}, { -p+p +0.00*p +3.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, -Rtn+r_w +1.00*mesh_level*mm +1.00*sp1_fac_r1 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 }, x2fracAngle2*alpha} {
+tmpbd_1_1[] = Extrude {{x2_sp_wind_fac2,0,0}, {0,1,0}, { -p+p +0.00*p +1.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, -Rtn+r_w +1.00*mesh_level*mm +1.00*sp1_fac_r1 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 }, x2fracAngle2*alpha} {
   Surface{tmpbc_1_1[0]};
 };
 
@@ -326,11 +325,11 @@ sbd_1_1[] += tmpbd_1_1[{2:4}];
 // sbb_1_2[] += tmpbb_1_2[{2:4}];
 
 
-ptsbc_1_2 = newp; Point(ptsbc_1_2) = { p+p +2.00*p*exPand -3.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, Rtp-r_w +1.00*mesh_level*mm +1.00*sp1_fac_r2 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 };
+ptsbc_1_2 = newp; Point(ptsbc_1_2) = { p+p +2.00*p*exPand -1.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, Rtp-r_w +1.00*mesh_level*mm +1.00*sp1_fac_r2 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 };
 
 
 
-tmpbc_1_2[] = Extrude {{x2_sp_wind_fac2,0,0}, {0,-1,0}, { p+p +2.00*p*exPand -3.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, Rtp-r_w +1.00*mesh_level*mm +1.00*sp1_fac_r2 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 }, x2fracAngle3*alpha} {
+tmpbc_1_2[] = Extrude {{x2_sp_wind_fac2,0,0}, {0,-1,0}, { p+p +2.00*p*exPand -1.00*x2_sp_wind_fac +0.00*R*Cos(alpha/2) +0.00*sp_fac1 +0.00*sp_fac_str1, -p+p +0.00*p +0.00*sp_fac1, Rtp-r_w +1.00*mesh_level*mm +1.00*sp1_fac_r2 +0.00*R*Sin(alpha/2) +0.00*x2_sp_wind_fac +0.00*sp_fac_str2 }, x2fracAngle3*alpha} {
   Surface{tmpbd_1_1[0]};
 };
 
@@ -373,16 +372,15 @@ sbef_2_1_2[] = {};
 sbef_2_1_2[] = {tmpbe_1_2[0]};
 
 
-/*
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////// Face 2a - half wire (x - z) extrude in y direction - Corner 3 to Corner 2
 // Wire 2a1
 
-p2a1_0 = newp; Point(p2a1_0) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,-r_w+mesh_level*mm +3.00*sp2_fac_r1_ad, LcWiremesh * mm};           // centre circle
-p2a1_1 = newp; Point(p2a1_1) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,-2*r_w+mesh_level*mm +3.00*sp2_fac_r1_ad, LcWiremesh * mm};         // bottom circle
-// p2a1_2 = newp; Point(p2a1_2) = {p+p +2.00*p*exPand+r_w,p+p +2.00*p*exPand,-r_w+mesh_level*mm +3.00*sp2_fac_r1_ad, LcWiremesh * mm};    // right circle
-p2a1_3 = newp; Point(p2a1_3) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,0+mesh_level*mm +3.00*sp2_fac_r1_ad, LcWiremesh * mm};              // top circle
-p2a1_4 = newp; Point(p2a1_4) = {p+p +2.00*p*exPand-r_w,p+p +2.00*p*exPand,-r_w+mesh_level*mm +3.00*sp2_fac_r1_ad, LcWiremesh * mm};       // left circle
+p2a1_0 = newp; Point(p2a1_0) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,-r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};           // centre circle
+p2a1_1 = newp; Point(p2a1_1) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,-2*r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};         // bottom circle
+// p2a1_2 = newp; Point(p2a1_2) = {p+p +2.00*p*exPand+r_w,p+p +2.00*p*exPand,-r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};    // right circle
+p2a1_3 = newp; Point(p2a1_3) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,0+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};              // top circle
+p2a1_4 = newp; Point(p2a1_4) = {p+p +2.00*p*exPand-r_w,p+p +2.00*p*exPand,-r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};       // left circle
 
 l2a1s_1 = newl; Line(l2a1s_1) = {p2a1_1, p2a1_3};
 l2a1_2 = newl; Circle(l2a1_2) = {p2a1_3, p2a1_0, p2a1_4};
@@ -498,11 +496,11 @@ saef_2_2_2[] = {tmpae_2_2[0]};
 /////// Face 2b - half wire (x - z) extrude in y direction - Corner 1 to Corner 4
 // Wire 2b1
 
-p2b1_0 = newp; Point(p2b1_0) = {-p+p,-p+p,-r_w+mesh_level*mm +0.00*sp2_fac_r1_ad, LcWiremesh * mm};                         // centre circle
-p2b1_1 = newp; Point(p2b1_1) = {-p+p,-p+p,-2*r_w+mesh_level*mm +0.00*sp2_fac_r1_ad, LcWiremesh * mm};                       // bottom circle
-p2b1_2 = newp; Point(p2b1_2) = {-p+p+r_w,-p+p,-r_w+mesh_level*mm +0.00*sp2_fac_r1_ad, LcWiremesh * mm};                     // right circle
-p2b1_3 = newp; Point(p2b1_3) = {-p+p,-p+p,0+mesh_level*mm +0.00*sp2_fac_r1_ad, LcWiremesh * mm};                            // top circle
-// p2b1_4 = newp; Point(p2b1_4) = {-p+p-r_w,-p+p,-r_w+mesh_level*mm +0.00*sp2_fac_r1_ad, LcWiremesh * mm};                  // left circle
+p2b1_0 = newp; Point(p2b1_0) = {-p+p,-p+p,-r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};                         // centre circle
+p2b1_1 = newp; Point(p2b1_1) = {-p+p,-p+p,-2*r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};                       // bottom circle
+p2b1_2 = newp; Point(p2b1_2) = {-p+p+r_w,-p+p,-r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};                     // right circle
+p2b1_3 = newp; Point(p2b1_3) = {-p+p,-p+p,0+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};                            // top circle
+// p2b1_4 = newp; Point(p2b1_4) = {-p+p-r_w,-p+p,-r_w+mesh_level*mm -5.00*sp2_fac_r1_ad, LcWiremesh * mm};                  // left circle
 
 l2b1_1 = newl; Circle(l2b1_1) = {p2b1_1, p2b1_0, p2b1_2};
 l2b1_2 = newl; Circle(l2b1_2) = {p2b1_2, p2b1_0, p2b1_3};
@@ -612,7 +610,6 @@ sae_2_2[] += tmpbe_2_2[{2:4}];
 
 saef_2_2_2[] = {};
 saef_2_2_2[] = {tmpbe_2_2[0]};
-*/
 
 
 /*
