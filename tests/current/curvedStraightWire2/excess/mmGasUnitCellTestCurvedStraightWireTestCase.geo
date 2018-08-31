@@ -34,29 +34,14 @@ Include "mmGasComponentLabel.pro";
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // CONSTANTS
 
-meshLevel = 0.10;                                          // mesh level, in mm
+meshLevel = 0.100;                                         // mesh level, in mm
 meshWindow = 0.020;                                        // mesh window, in mm
 a = 0.045;                                                 // the "pitch", or distance between unitCellCurWire pillars, in mm
 
 
 //----------------------------------------------------------
-// pillar parameters
-
-r0 = 0.005;                                                // the pillar radius, in mm
-pilfx = 0;                                                 // pillar co-ordinates, multiplication factor in x, 1.25
-pilfy = 0;                                                 // pillar co-ordinates, multiplication factor in y, 1.25
-pilcx = -0.025*0 - 0/4;                                    // pillar co-ordinates, constant factor in x, -0.025
-pilcy = -0.025*0 - 0/4;                                    // pillar co-ordinates, constant factor in y, -0.025
-
-ttD = ( meshLevel - 0.005 );                               // top of dielectric pillar
-tteD1 = ( ttD - 0.001 );                                   // etched pillar level 1
-tteD2 = ( 0.5 * (ttD - tteD1) + tteD1 );                   // etched pillar level 2
-
-
-//----------------------------------------------------------
 // vertical parameters
 
-r1 = 0.001;                                                // the etching amount (etch radius = r0 + r1), in mm
 tlgC = ( 0.0000 ) / 2;                                     // lower electrode ground copper thickness, in mm
 tltC = ( 0.0035 ) / 2;                                     // lower electrode top copper thickness, in mm
 tM = ( 0.0035 ) / 2;                                       // dielectric thickness, in mm
@@ -85,9 +70,6 @@ p = hp0;                                                   // half pitch of the 
 
 R = (p * p + rW * rW)/( (2 * rW) );                        // R
 alpha = Asin((p/R));                                       // angle in radians
-
-meshLevel = 0.100;                                         // mesh level, in mm
-meshWindow = 0.020;                                        // mesh window, in mm
 
 x1SPWindFac = p*0.10;
 x2SPWindFac = p*0.10;
@@ -138,8 +120,6 @@ geofy = 1;                                                 // geometric_factor
 
 // current best dimensions for mesh characteristic lengths
 
-  lcDielectricPillar = 0.0025;                                                                                              // characterization of dielectric 
-  lcEtchingPillar = 0.0025;                                                                                                 // characterization of dielectric etching
   lcCopperPlateBdry = 0.0025;                                                                                               // characterization of metal surfaces / anode
   lcExtElectrodeBdry = 0.0050;                                                                                              // characterization of external electrode / cathode
   lcWireMesh = 0.001;                                                                                                       // characterization of wire electrode

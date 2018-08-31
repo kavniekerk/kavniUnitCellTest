@@ -1,5 +1,5 @@
 // *********************************************************************
-// mmGasUnitCellTestCurveSingleLayerCurrent.geo
+// mmGasUnitCellTestCurvedWireTestCase.geo
 //
 // Description:
 // Geometry file for a MM cell.
@@ -21,7 +21,7 @@ Include "mmGasComponentLabel.pro";
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// GENERAL INFORMATION
 //
-// mmGasUnitCellTestCurveSingleLayerCurrent.geo
+// mmGasUnitCellTestCurvedWireTestCase.geo
 //
 // Description
 //
@@ -164,7 +164,7 @@ geofy = 1;                                                 // geometric_factor
   lcEtchingPillar = 0.0025;                                                                                                 // characterization of dielectric etching
   lcCopperPlateBdry = 0.0025;                                                                                               // characterization of metal surfaces / anode
   lcExtElectrodeBdry = 0.0050;                                                                                              // characterization of external electrode / cathode
-  lcWireMesh = 0.001;                                                                                                      // characterization of wire electrode
+  lcWireMesh = 0.001;                                                                                                       // characterization of wire electrode
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1719,25 +1719,25 @@ physvol_lower_cp = newreg; Physical Volume(physvol_lower_cp) = { vol_lower_cp };
 // *******************************
 // Corner 1
 // *******************************
-pc1_1 = newp; Point(pc1_1) = { geofx*(+rW-p+p+0*spFac1) + geofx*m*(+rW-p+p+0*spFac1), geofy*(+rW-p+p+0*spFac1) + geofy*n*(+rW-p+p+0*spFac1), 0, lcCopperPlateBdry };
+pc1_1 = newp; Point(pc1_1) = { geofx*(+rW-p+p+0*spFac1) + geofx*m1*(+rW-p+p+0*spFac1), geofy*(+rW-p+p+0*spFac1) + geofy*n1*(+rW-p+p+0*spFac1), 0, lcCopperPlateBdry };
 
 
 // *******************************
 // Corner 2
 // *******************************
-pc1_2 = newp; Point(pc1_2) = { geofx*(-rW+p+p+0*spFac1) + geofx*m*(-rW+p+p+0*spFac1), geofy*(+rW-p+p+0*spFac1) + geofy*n*(+rW-p+p+0*spFac1), 0, lcCopperPlateBdry };
+pc1_2 = newp; Point(pc1_2) = { geofx*(-rW+p+p+0*spFac1) + geofx*m1*(-rW+p+p+0*spFac1), geofy*(+rW-p+p+0*spFac1) + geofy*n1*(+rW-p+p+0*spFac1), 0, lcCopperPlateBdry };
 
 
 // *******************************
 // Corner 3
 // *******************************
-pc1_3 = newp; Point(pc1_3) = { geofx*(-rW+p+p+0*spFac1) + geofx*m*(-rW+p+p+0*spFac1), geofy*(-rW+p+p+0*spFac1) + geofy*n*(-rW+p+p+0*spFac1), 0, lcCopperPlateBdry }; 
+pc1_3 = newp; Point(pc1_3) = { geofx*(-rW+p+p+0*spFac1) + geofx*m1*(-rW+p+p+0*spFac1), geofy*(-rW+p+p+0*spFac1) + geofy*n1*(-rW+p+p+0*spFac1), 0, lcCopperPlateBdry }; 
 
 
 // *******************************
 // Corner 4
 // *******************************
-pc1_4 = newp; Point(pc1_4) = { geofx*(+rW-p+p+0*spFac1) + geofx*m*(+rW-p+p+0*spFac1), geofy*(-rW+p+p+0*spFac1) + geofy*n*(-rW+p+p+0*spFac1), 0, lcCopperPlateBdry };
+pc1_4 = newp; Point(pc1_4) = { geofx*(+rW-p+p+0*spFac1) + geofx*m1*(+rW-p+p+0*spFac1), geofy*(-rW+p+p+0*spFac1) + geofy*n1*(-rW+p+p+0*spFac1), 0, lcCopperPlateBdry };
 
 
 // UPPER SQUARE

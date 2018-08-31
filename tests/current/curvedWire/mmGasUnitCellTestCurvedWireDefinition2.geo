@@ -1,18 +1,20 @@
-// *********************************************************************
-// mmGasUnitCellTestCurveDefault.geo
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// 
+// mmGasUnitCellTestCurvedWireDefinition2.geo
 //
 // Description:
-// Geometry file for a MM cell.
+// Geometry file for a MM cell
 // This cell can be repeated any number of times within Garfield 
 // to construct an arbitrarily large MM
 //
-// *********************************************************************  
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
-// update master branch again
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/// HEADER FILES
+//
 
 Include "mmGasComponentLabel.pro";
 // Include "mmGasMeshingOptions.pro";
-
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// MMGASSTRWIRE GEOMETRY MODULE
@@ -21,7 +23,7 @@ Include "mmGasComponentLabel.pro";
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// GENERAL INFORMATION
 //
-// mmGasUnitCellTestCurveDefault.geo
+// mmGasUnitCellTestCurvedWireDefinition2.geo
 //
 // Description
 //
@@ -31,9 +33,10 @@ Include "mmGasComponentLabel.pro";
 //
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// CONSTANTS
+// CONSTANTS 
 
-a = 0.045;                                       // the "pitch", or distance between GEM pillars, in mm
+
+a = 0.045;                                       // distance between unitCellTestWire wires, in mm
 
 mwf = 1;                                         // meshWindow_factor
 
@@ -48,12 +51,7 @@ R = ( p * p + rW * rW )/( (2 * rW) );            // R
 alpha = Asin( (p/R) );                           // angle in radians
 
 meshLevel = 0.000;                               // mesh level, in mm
-meshWindow = 0.020;                             // mesh window, in mm
-
-x1SPWindFac = 1.00;
-x2SPWindFac = 1.00;
-y1SPWindFac = 1.00;
-y2SPWindFac = 1.00;
+meshWindow = 0.020;                              // mesh window, in mm
 
 spFac1 = p*0.00;
 spFac2 = p*0.00;
@@ -66,24 +64,46 @@ y2SPWindFac2 = p*0.00;
 Rtp = R - R*0.00;
 Rtn = R + R*0.00;
 
-h_f = 0*rW;                                      // Heightfactor
+//----------------------------------------------------------
+// shell parameters
 
-geofx = 1;
-geofy = 1;
+geofx = 1;                                       // geometric_factor
+geofy = 1;                                       // geometric_factor
 
-m = 0;
-n = 0;
-
-// Characteristic lengths
-
-  lcCopperPlateBdry = 0.005;
-  lcExtElectrodeBdry = 0.005;
-  lcWireMesh = 0.001;
+m1 = 0;
+n1 = 0;
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/// GEOMETRY PARAMETERS
+
+//----------------------------------------------------------
+// Extrusion Precision
+
+// Geometry.ExtrudeSplinePoints = 3;
+// Geometry.Points = 0;
+// Geometry.Tolerance = 1e-03;
+// Coherent Mesh;
+// Coherence;
+// Geometry.AutoCoherence = 1;
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/// MESHING PARAMETERS
+
+//----------------------------------------------------------
+// Characteristic lengths - characterization of mesh
+
+// current best dimensions for mesh characteristic lengths
+
+  lcCopperPlateBdry = 0.0025;                                                                                               // characterization of metal surfaces / anode
+  lcExtElectrodeBdry = 0.0050;                                                                                              // characterization of external electrode / cathode
+  lcWireMesh = 0.001;                                                                                                       // characterization of wire electrode
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /////// Face 1a - half wire (y - z) extrude in x direction - Corner 3 to Corner 4
-//___________________________________________________________________________________________________________________________________________________
+//
 // Wire 1a1
 
 p1a1_0 = newp; Point(p1a1_0) = {p+spFac1,p+spFac1,rW+meshLevel*mm, lcWireMesh * mm};               // centre circle
@@ -104,7 +124,7 @@ tmpaa_1_1[] = {};
 tmpaa_1_1[] = {s1a1_1};
 saaf_1_1_1[] = s1a1_1;
 
-tmpab_1_1[] = Extrude {{x2SPWindFac2,0,0},{0,-1,0},{p+1*spFac1, p+1*spFac1, -Rtn+rW}, alpha} {
+tmpab_1_1[] = Extrude {{x1SPWindFac2,0,0},{0,-1,0},{p+1*spFac1, p+1*spFac1, -Rtn+rW}, alpha} {
   Surface{tmpaa_1_1[0]};
 };
 
@@ -112,33 +132,33 @@ sab_1_1[] = {};
 sab_1_1[] = tmpab_1_1[{2:4}];
 
 
-//___________________________________________________________________________________________________________________________________________________
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Wire 1a2
 
 
 tmpaa_1_2[] = {tmpab_1_1[0]};
 
-tmpab_1_2[] = Extrude {{x2SPWindFac2,0,0},{0,1,0},{-p+1*spFac1, p+1*spFac1, Rtp-rW}, alpha} {
+tmpab_1_2[] = Extrude {{x1SPWindFac2,0,0},{0,1,0},{-p+1*spFac1, p+1*spFac1, Rtp-rW}, alpha} {
   Surface{tmpaa_1_2[0]};
 };
 
 sab_1_2[] = {};
 sab_1_2[] = tmpab_1_2[{2:4}];
 
-sabf_1_1_2[] = {};
-sabf_1_1_2[] = tmpab_1_2[0];
+sabf_2_1_2[] = {};
+sabf_2_1_2[] = tmpab_1_2[0];
 
-sl_wire_exterior_surface_1a[] = newreg; Surface Loop(sl_wire_exterior_surface_1a) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_1_1_2[0] };
+sl_wire_exterior_surface_1a[] = newreg; Surface Loop(sl_wire_exterior_surface_1a) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0] };
 // vol_1a_wire = newv; Compound Volume(vol_1a_wire) = { tmpab_1_1[1], tmpab_1_2[1] };
 vol_1a_wire = newreg; Volume(vol_1a_wire) = sl_wire_exterior_surface_1a[];
 
 Physical Volume(physvol_1a_wire) = vol_1a_wire;
-Physical Surface(physsurf_1a_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_1_1_2[0] };
+Physical Surface(physsurf_1a_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0] };
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /////// Face 1b - half wire (y - z) extrude in x direction - Corner 1 to Corner 2
-//___________________________________________________________________________________________________________________________________________________
+//
 // Wire 1b1
 
 p1b1_0 = newp; Point(p1b1_0) = {-p+spFac1,-p+spFac1,rW+meshLevel*mm, lcWireMesh * mm};             // centre circle
@@ -158,7 +178,7 @@ s1b1_1 = news; Plane Surface(s1b1_1) = {ll1b1_1};
 tmpba_1_1[] = {s1b1_1};
 sbaf_1_1_1[] = tmpba_1_1[0];
 
-tmpbb_1_1[] = Extrude {{x1SPWindFac2,0,0},{0,1,0},{-p+spFac1, -p+spFac1, -Rtn+rW}, alpha} {
+tmpbb_1_1[] = Extrude {{x2SPWindFac2,0,0},{0,1,0},{-p+spFac1, -p+spFac1, -Rtn+rW}, alpha} {
   Surface{tmpba_1_1[0]};
 };
 
@@ -166,13 +186,13 @@ sbb_1_1[] = {};
 sbb_1_1[] += tmpbb_1_1[{2:4}];
 
 
-//___________________________________________________________________________________________________________________________________________________
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Wire 1b2
 
 
 tmpba_1_2[] = {tmpbb_1_1[0]};
 
-tmpbb_1_2[] = Extrude {{x1SPWindFac2,0,0},{0,-1,0},{p+spFac1, -p+spFac1, Rtp-rW}, alpha} {
+tmpbb_1_2[] = Extrude {{x2SPWindFac2,0,0},{0,-1,0},{p+spFac1, -p+spFac1, Rtp-rW}, alpha} {
   Surface{tmpba_1_2[0]};
 };
 
@@ -190,9 +210,9 @@ Physical Volume(physvol_1b_wire) = vol_1b_wire;
 Physical Surface(physsurf_1b_wire) = { sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0] };
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /////// Face 2a - half wire (x - z) extrude in y direction - Corner 3 to Corner 2
-//___________________________________________________________________________________________________________________________________________________
+//
 // Wire 2a1
 
 p2a1_0 = newp; Point(p2a1_0) = {p+spFac2,p+spFac2,-rW+meshLevel*mm, lcWireMesh * mm};              // centre circle
@@ -221,7 +241,7 @@ sab_2_1[] = {};
 sab_2_1[] += tmpab_2_1[{2:4}];
 
 
-//___________________________________________________________________________________________________________________________________________________
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Wire 2a2
 
 
@@ -249,9 +269,9 @@ Physical Volume(physvol_2a_wire) = vol_2a_wire;
 Physical Surface(physsurf_2a_wire) = { saaf_2_2_1[0], sab_2_1[], sab_2_2[], sabf_2_2_2[0] };
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /////// Face 2b - half wire (x - z) extrude in y direction - Corner 1 to Corner 4
-//___________________________________________________________________________________________________________________________________________________
+//
 // Wire 2b1
 
 
@@ -281,7 +301,7 @@ sbb_2_1[] = {};
 sbb_2_1[] += tmpbb_2_1[{2:4}];
 
 
-//___________________________________________________________________________________________________________________________________________________
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Wire 2b2
 
 
@@ -310,88 +330,12 @@ Physical Volume(physvol_2b_wire) = vol_2b_wire;
 Physical Surface(physsurf_2b_wire) = { sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
 
 
-/*
-// SHELL
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/// FOOTER FILES
+//
 
-// --------------------------------------------------------------------------
+Include "mmGasUnitCellTestWindowDefinition.geo";
+Include "mmGasUnitCellTestLineDefinition.geo";
 
-// *******************************
-// Corner 1
-// *******************************
-pc1_1 = newp; Point(pc1_1) = {geofx*-meshWindow/2+geofx*m*-meshWindow/2+1*spFac1, geofy*-meshWindow/2+geofy*n*-meshWindow/2+1*spFac1, 0,lcCopperPlateBdry};
+// End
 
-
-// *******************************
-// Corner 2
-// *******************************
-pc1_2 = newp; Point(pc1_2) = {geofx*meshWindow/2+geofx*m*meshWindow/2+1*spFac1, geofy*-meshWindow/2+geofy*n*-meshWindow/2+1*spFac1, 0,lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 3
-// *******************************
-pc1_3 = newp; Point(pc1_3) = {geofx*meshWindow/2+geofx*m*meshWindow/2+1*spFac1, geofy*meshWindow/2+geofy*n*meshWindow/2+1*spFac1, 0,lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 4
-// *******************************
-pc1_4 = newp; Point(pc1_4) = {geofx*-meshWindow/2+geofx*m*-meshWindow/2+1*spFac1, geofy*meshWindow/2+geofy*n*meshWindow/2+1*spFac1, 0,lcCopperPlateBdry};
-
-
-// UPPER SQUARE
-
-// *******************************
-// Corner 1
-// *******************************
-ptR1_0 = newp; Point(ptR1_0) = {-p+1*spFac1, -p+1*spFac1, R-rW, lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 1
-// *******************************
-ptpR1_1 = newp; Point(ptpR1_1) = {-p, -p+1*spFac1, R-rW, lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 2
-// *******************************
-ptpR1_2 = newp; Point(ptpR1_2) = {p+1*spFac1, -p, R-rW, lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 3
-// *******************************
-ptpR1_3 = newp; Point(ptpR1_3) = {p+1*spFac1, p+1*spFac1, R-rW, lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 4
-// *******************************
-ptpR1_4 = newp; Point(ptpR1_4) = {-p+1*spFac1, p+1*spFac1, R-rW, lcCopperPlateBdry};
-
-// UPPER SQUARE
-
-// *******************************
-// Corner 1
-// *******************************
-ptnR1_1 = newp; Point(ptnR1_1) = {-p+1*spFac1, -p, -R+rW, lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 2
-// *******************************
-ptnR1_2 = newp; Point(ptnR1_2) = {p+1*spFac1, -p+1*spFac1, -R+rW, lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 3
-// *******************************
-ptnR1_3 = newp; Point(ptnR1_3) = {p+1*spFac1, p+1*spFac1, -R+rW, lcCopperPlateBdry};
-
-
-// *******************************
-// Corner 4
-// *******************************
-ptnR1_4 = newp; Point(ptnR1_4) = {-p, p+1*spFac1, -R+rW, lcCopperPlateBdry};
-*/
