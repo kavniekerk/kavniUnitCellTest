@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 
-// mmGasUnitCellTestShellStructureSingleLayer50.geo
+// mmGasUnitCellTestShellStructureSingleLayer.geo
 //
 // Description:
 // Geometry file for a MM cell
@@ -26,9 +26,9 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // CONSTANTS
 
-meshLevel = 0.10;                                          // mesh level, in mm
+meshLevel = 0.100;                                         // mesh level, in mm
 meshWindow = 0.020;                                        // mesh window, in mm
-a = 0.0495;                                                // distance between unitCellTestWire wires, in mm
+a = 0.045;                                                 // distance between unitCellTestWire wires, in mm
 
 
 //----------------------------------------------------------

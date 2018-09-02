@@ -533,7 +533,6 @@ physvol_high_cp = newreg; Physical Volume(physvol_high_cp) = { vol_high_cp };
 //
 
 // Include "mmGasUnitCellTestWindowDefinition.geo";
-// Include "mmGasUnitCellTestLineDefinition.geo";
 
 // End
 

@@ -360,8 +360,8 @@ psbdh_1_2_bsurf3b = newreg; Plane Surface(psbdh_1_2_bsurf3b) = { llbdh_1_2_bsurf
 //----------------------------------------------------------
 // Face physsurfBdh_2_1 (Corner 3 - Corner 4)
 
-l1bdh_2_1_bsurft4 = newl; Line(l1bdh_2_1_bsurft4) = {pexet4, pbdhabt_2_1_2[1]};                     // top line, top circle
-l1bdh_2_1_bsurfb4 = newl; Line(l1bdh_2_1_bsurfb4) = {ptl2c4, pbdhbbt_2_2_2[1]};                     // bottom line, bottom circle
+l1bdh_2_1_bsurft4 = newl; Line(l1bdh_2_1_bsurft4) = {pexet4, pbdhabt_2_1_2[1]};                    // top line, top circle
+l1bdh_2_1_bsurfb4 = newl; Line(l1bdh_2_1_bsurfb4) = {ptl2c4, pbdhbbt_2_2_2[1]};                    // bottom line, bottom circle
 
 
 llbdh_2_1_bsurf4t = newreg; Line Loop(llbdh_2_1_bsurf4t) = { lexet3, l1bdh_2_1_bsurft4, -ll_bdhabt_2_1_2[0], -ll_bdhabt_2_1_1[0], -l1bdh_1_2_bsurft1 };
@@ -533,7 +533,6 @@ physvol_lower_cp = newreg; Physical Volume(physvol_lower_cp) = { vol_lower_cp };
 //
 
 // Include "mmGasUnitCellTestWindowDefinition.geo";
-// Include "mmGasUnitCellTestLineDefinition.geo";
 
 // End
 

@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 
-// mmGasUnitCellTestCurveExtremeCaseDefinition.geo
+// mmGasUnitCellTestCurveExtremeCase2Definition.geo
 //
 // Description:
 // Geometry file for a MM cell.
@@ -30,7 +30,7 @@ Include "mmGasComponentLabel.pro";
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// GENERAL INFORMATION
 //
-// mmGasUnitCellTestCurveExtremeCaseDefinition.geo
+// mmGasUnitCellTestCurveExtremeCase2Definition.geo
 //
 // Description
 //
@@ -40,7 +40,7 @@ Include "mmGasComponentLabel.pro";
 //
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// CONSTANTS 
+// CONSTANTS
 
 
 meshLevel = 0.000;                               // mesh level, in mm
@@ -50,14 +50,14 @@ tC = 0.0035;                                     // copper thickness, in mm
 tD = 0.0035;                                     // dielectric thickness, in mm
 lE = 0.40;                                       // distance from GEM plates to upper exterior electrode, in mm
 lP = 0.02;                                       // distance from lower LEM plate to pad (readout) plane, in mm
-a = 0.040;                                       // distance between unitCellTestWire wires, in mm
+a = 0.045;                                       // distance between unitCellTestWire wires, in mm
 
 mwf = 1;                                         // meshWindow_factor
 
 mm = 1;                                          // geometrical scaling
-rW = 0.010 * mm;                                 // R of Wiremesh, in microns
-hp0 = 0.0100;                                    // half pitch of the window, in mm
-hp = 0.0100 * mm - 0*rW/mwf * mm;                // half pitch of the window, in microns
+rW = 0.009 * mm;                                 // R of Wiremesh, in microns
+hp0 = 0.01125;                                   // half pitch of the window, in mm
+hp = 0.01125 * mm - 0*rW/mwf * mm;               // half pitch of the window, in microns
 
 p = hp0;                                         // half pitch of the window, in mm
 
@@ -65,32 +65,32 @@ R = (p * p + rW * rW)/( (2 * rW) );              // R
 alpha = Asin((p/R));                             // angle in radians
 
 
-x1fracAngle1 = 0.5;
-x1fracAngle2 = 0.5;
-x1fracAngle3 = 0.5;
-x1fracAngle4 = 0.5;
+x1fracAngle1 = 0.16399;
+x1fracAngle2 = 1;
+x1fracAngle3 = 1;
+x1fracAngle4 = 0.16399;
 
-x2fracAngle1 = 0.5;
-x2fracAngle2 = 0.5;
-x2fracAngle3 = 0.5;
-x2fracAngle4 = 0.5;
+x2fracAngle1 = 0.16399;
+x2fracAngle2 = 1;
+x2fracAngle3 = 1;
+x2fracAngle4 = 0.16399;
 
-y1fracAngle1 = 0.5;
-y1fracAngle2 = 0.5;
-y1fracAngle3 = 0.5;
-y1fracAngle4 = 0.5;
+y1fracAngle1 = 0.16399;
+y1fracAngle2 = 1;
+y1fracAngle3 = 1;
+y1fracAngle4 = 0.16399;
 
-y2fracAngle1 = 0.5;
-y2fracAngle2 = 0.5;
-y2fracAngle3 = 0.5;
-y2fracAngle4 = 0.5;
+y2fracAngle1 = 0.16399;
+y2fracAngle2 = 1;
+y2fracAngle3 = 1;
+y2fracAngle4 = 0.16399;
 
 // fracAngle = 0.5;
 
-// CHECK alpha = 90.00 deg, angles split into 4, always add to 90 deg
+// CHECK alpha = 77.32 deg, angles split into 4, always add to 90 deg
 // CHECK total angle = 1
-// CHECK WIDTH 2*0.010 + 2*0.0045 + 2*0.01*0.10 = 0.040
-// CHECK HEIGHT 4*0.010 + 2*0.0045 = 0.049
+// CHECK WIDTH 2*0.009 + 2*0.0125 + 2*0.01*0.10 = 0.045
+// CHECK HEIGHT 4*0.009 + 2*0.0125 = 0.061
 // hence, top: -adjustment + radius
 // and, bottom: adjustment + radius
 // take half the adjustment as the value (radius)
@@ -121,17 +121,17 @@ y2SPWindFac2 = p*0.00;
 Rtp = R + R*0.0;
 Rtn = R - R*0.0;
 
-sp1FacR1Ad = +0.0045;
-sp1FacR2Ad = +0.0045;
+sp1FacR1Ad = -0.00625;
+sp1FacR2Ad = -0.00625;
 
-sp2FacR1Ad = +0.0045;
-sp2FacR2Ad = +0.0045;
+sp2FacR1Ad = -0.00625;
+sp2FacR2Ad = -0.00625;
 
-sp1FacR1 = 1.00*(Rtn-1*rW) - 3*sp1FacR1Ad;       // -Rtn+rW
-sp1FacR2 = 1.00*(-Rtp+1*rW) - 3*sp1FacR2Ad;      // +Rtp-rW
+sp1FacR1 = 1.00*(Rtn-1*rW) + sp1FacR1Ad;         // -Rtn+rW
+sp1FacR2 = 1.00*(-Rtp+1*rW) + sp1FacR2Ad;        // +Rtp-rW
 
-sp2FacR1 = 1.00*(Rtn-1*rW) - 3*sp2FacR1Ad;       // -Rtn+rW
-sp2FacR2 = 1.00*(-Rtp+1*rW) - 3*sp2FacR2Ad;      // +Rtp-rW
+sp2FacR1 = 1.00*(Rtn-1*rW) + sp2FacR1Ad;         // -Rtn+rW
+sp2FacR2 = 1.00*(-Rtp+1*rW) + sp2FacR2Ad;        // +Rtp-rW
 
 geofx = 1;
 geofy = 1;
@@ -140,8 +140,6 @@ n1 = 0;
 m1 = 0;
 n2 = 1;
 m2 = 1;
-
-exPand = (1/1);
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -166,9 +164,9 @@ exPand = (1/1);
 
 // current best dimensions for mesh characteristic lengths
 
-  lcCopperPlateBdry = 0.0025;                                                                                                              // characterization of metal surfaces / anode
-  lcExtElectrodeBdry = 0.0050;                                                                                                             // characterization of external electrode / cathode
-  lcWireMesh = 0.001;                                                                                                                      // characterization of wire electrode
+  lcCopperPlateBdry = 0.0025;                                                                                               // characterization of metal surfaces / anode
+  lcExtElectrodeBdry = 0.0050;                                                                                              // characterization of external electrode / cathode
+  lcWireMesh = 0.001;                                                                                                       // characterization of wire electrode
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -177,11 +175,11 @@ exPand = (1/1);
 // Wire 1a1
 
 
-p1a1_0 = newp; Point(p1a1_0) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};                 // centre circle
-p1a1_1 = newp; Point(p1a1_1) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,0+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};                  // bottom circle
-// p1a1_2 = newp; Point(p1a1_2) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand+rW,rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};           // right circle
-p1a1_3 = newp; Point(p1a1_3) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,2*rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};               // top circle
-p1a1_4 = newp; Point(p1a1_4) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand-rW,rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};              // left circle
+p1a1_0 = newp; Point(p1a1_0) = {p+p +2.00*p,p+p +2.00*p,rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};                // centre circle
+p1a1_1 = newp; Point(p1a1_1) = {p+p +2.00*p,p+p +2.00*p,0+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};                 // bottom circle
+// p1a1_2 = newp; Point(p1a1_2) = {p+p +2.00*p,p+p +2.00*p+rW,rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};          // right circle
+p1a1_3 = newp; Point(p1a1_3) = {p+p +2.00*p,p+p +2.00*p,2*rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};              // top circle
+p1a1_4 = newp; Point(p1a1_4) = {p+p +2.00*p,p+p +2.00*p-rW,rW+meshLevel*mm  -1.00*sp1FacR2Ad, lcWireMesh * mm};             // left circle
 
 l1a1s_1 = newl; Line(l1a1s_1) = {p1a1_1, p1a1_3};
 l1a1_2 = newl; Circle(l1a1_2) = {p1a1_3, p1a1_0, p1a1_4};
@@ -202,10 +200,10 @@ sab_1_1[] = {};
 sab_1_1[] += tmpab_1_1[{2:4}];
 
 
-ptsac_1_1 = newp; Point(ptsac_1_1) = { p+p +2.00*p*exPand -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
+ptsac_1_1 = newp; Point(ptsac_1_1) = { p+p +2.00*p -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
 
 
-tmpac_1_1[] = Extrude {{x1SPWindFac2,0,0}, {0,-1,0}, { p+p +2.00*p*exPand -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle1*alpha } {
+tmpac_1_1[] = Extrude {{x1SPWindFac2,0,0}, {0,-1,0}, { p+p +2.00*p -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle1*alpha } {
   Surface{tmpab_1_1[0]};
 };
 
@@ -221,10 +219,10 @@ sac_1_1[] += tmpac_1_1[{2:4}];
 // sac2_1_1[] += tmpac2_1_1[{2:4}];
 
 
-ptsad_1_1 = newp; Point(ptsad_1_1) = { p+p +2.00*p*exPand -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
+ptsad_1_1 = newp; Point(ptsad_1_1) = { p+p +2.00*p -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
 
 
-tmpad_1_1[] = Extrude {{x1SPWindFac2,0,0}, {0,-1,0}, { p+p +2.00*p*exPand -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle2*alpha} {
+tmpad_1_1[] = Extrude {{x1SPWindFac2,0,0}, {0,-1,0}, { p+p +2.00*p -1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle2*alpha} {
   Surface{tmpac_1_1[0]};
 };
 
@@ -247,10 +245,10 @@ sad_1_1[] += tmpad_1_1[{2:4}];
 // sab_1_2[] += tmpab_1_2[{2:4}];
 
 
-ptsac_1_2 = newp; Point(ptsac_1_2) = { -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
+ptsac_1_2 = newp; Point(ptsac_1_2) = { -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
 
 
-tmpac_1_2[] = Extrude {{x1SPWindFac2,0,0}, {0,1,0}, { -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle3*alpha} {
+tmpac_1_2[] = Extrude {{x1SPWindFac2,0,0}, {0,1,0}, { -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle3*alpha} {
   Surface{tmpad_1_1[0]};
 };
 
@@ -267,10 +265,10 @@ sac_1_2[] += tmpac_1_2[{2:4}];
 // sac2_1_2[] += tmpac2_1_2[{2:4}];
 
 
-ptsad_1_2 = newp; Point(ptsad_1_2) = { -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
+ptsad_1_2 = newp; Point(ptsad_1_2) = { -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 };
 
 
-tmpad_1_2[] = Extrude {{x1SPWindFac2,0,0}, {0,1,0},{ -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p*exPand +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle4*alpha} {
+tmpad_1_2[] = Extrude {{x1SPWindFac2,0,0}, {0,1,0},{ -p+p +1.00*x1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, p+p +2.00*p +0.00*spFac1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp1FacR1 +0.00*R*Sin(alpha/2) +0.00*x1SPWindFac +0.00*spFacStr2 }, x1fracAngle4*alpha} {
   Surface{tmpac_1_2[0]};
 };
 
@@ -303,11 +301,11 @@ Physical Surface(physsurf_1a_wire) = { -saaf_1_1_1[0], sab_1_1[], sac_1_1[], sad
 // Wire 1b1
 
 
-p1b1_0 = newp; Point(p1b1_0) = {-p+p,-p+p,rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                                              // centre circle
-p1b1_1 = newp; Point(p1b1_1) = {-p+p,-p+p,0+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                                               // bottom circle
-p1b1_2 = newp; Point(p1b1_2) = {-p+p,-p+p+rW,rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                                           // right circle
-p1b1_3 = newp; Point(p1b1_3) = {-p+p,-p+p,2*rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                                            // top circle
-// p1b1_4 = newp; Point(p1b1_4) = {-p+p,-p+p-rW,rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                                        // left circle
+p1b1_0 = newp; Point(p1b1_0) = {-p+p,-p+p,rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                               // centre circle
+p1b1_1 = newp; Point(p1b1_1) = {-p+p,-p+p,0+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                                // bottom circle
+p1b1_2 = newp; Point(p1b1_2) = {-p+p,-p+p+rW,rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                            // right circle
+p1b1_3 = newp; Point(p1b1_3) = {-p+p,-p+p,2*rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                             // top circle
+// p1b1_4 = newp; Point(p1b1_4) = {-p+p,-p+p-rW,rW+meshLevel*mm -1.00*sp1FacR1Ad, lcWireMesh * mm};                         // left circle
 
 l1b1_1 = newl; Circle(l1b1_1) = {p1b1_1, p1b1_0, p1b1_2};
 l1b1_2 = newl; Circle(l1b1_2) = {p1b1_2, p1b1_0, p1b1_3};
@@ -375,10 +373,10 @@ sbd_1_1[] += tmpbd_1_1[{2:4}];
 // sbb_1_2[] += tmpbb_1_2[{2:4}];
 
 
-ptsbc_1_2 = newp; Point(ptsbc_1_2) = { p+p +2.00*p*exPand -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 };
+ptsbc_1_2 = newp; Point(ptsbc_1_2) = { p+p +2.00*p -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 };
 
 
-tmpbc_1_2[] = Extrude {{x2SPWindFac2,0,0}, {0,-1,0}, { p+p +2.00*p*exPand -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 }, x2fracAngle3*alpha} {
+tmpbc_1_2[] = Extrude {{x2SPWindFac2,0,0}, {0,-1,0}, { p+p +2.00*p -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 }, x2fracAngle3*alpha} {
   Surface{tmpbd_1_1[0]};
 };
 
@@ -395,10 +393,10 @@ sbc_1_2[] += tmpbc_1_2[{2:4}];
 // sbc2_1_2[] += tmpbc2_1_2[{2:4}];
 
 
-ptsbd_1_2 = newp; Point(ptsbd_1_2) = { p+p +2.00*p*exPand -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 };
+ptsbd_1_2 = newp; Point(ptsbd_1_2) = { p+p +2.00*p -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 };
 
 
-tmpbd_1_2[] = Extrude {{x2SPWindFac2,0,0}, {0,-1,0},{ p+p +2.00*p*exPand -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 }, x2fracAngle4*alpha} {
+tmpbd_1_2[] = Extrude {{x2SPWindFac2,0,0}, {0,-1,0},{ p+p +2.00*p -1.00*x2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -p+p +0.00*p +0.00*spFac1, Rtp-rW +1.00*meshLevel*mm +1.00*sp1FacR2 +0.00*R*Sin(alpha/2) +0.00*x2SPWindFac +0.00*spFacStr2 }, x2fracAngle4*alpha} {
   Surface{tmpbc_1_2[0]};
 };
 
@@ -432,11 +430,11 @@ Physical Surface(physsurf_1b_wire) = { -sbaf_1_1_1[0], sbb_1_1[], sbc_1_1[], sbd
 // Wire 2a1
 
 
-p2a1_0 = newp; Point(p2a1_0) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,-rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};                 // centre circle
-p2a1_1 = newp; Point(p2a1_1) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,-2*rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};               // bottom circle
-// p2a1_2 = newp; Point(p2a1_2) = {p+p +2.00*p*exPand+rW,p+p +2.00*p*exPand,-rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};           // right circle
-p2a1_3 = newp; Point(p2a1_3) = {p+p +2.00*p*exPand,p+p +2.00*p*exPand,0+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};                   // top circle
-p2a1_4 = newp; Point(p2a1_4) = {p+p +2.00*p*exPand-rW,p+p +2.00*p*exPand,-rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};              // left circle
+p2a1_0 = newp; Point(p2a1_0) = {p+p +2.00*p,p+p +2.00*p,-rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};                // centre circle
+p2a1_1 = newp; Point(p2a1_1) = {p+p +2.00*p,p+p +2.00*p,-2*rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};              // bottom circle
+// p2a1_2 = newp; Point(p2a1_2) = {p+p +2.00*p+rW,p+p +2.00*p,-rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};          // right circle
+p2a1_3 = newp; Point(p2a1_3) = {p+p +2.00*p,p+p +2.00*p,0+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};                  // top circle
+p2a1_4 = newp; Point(p2a1_4) = {p+p +2.00*p-rW,p+p +2.00*p,-rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};             // left circle
 
 l2a1s_1 = newl; Line(l2a1s_1) = {p2a1_1, p2a1_3};
 l2a1_2 = newl; Circle(l2a1_2) = {p2a1_3, p2a1_0, p2a1_4};
@@ -457,10 +455,10 @@ sab_2_1[] = {};
 sab_2_1[] += tmpab_2_1[{2:4}];
 
 
-ptsac_2_1 = newp; Point(ptsac_2_1) = { p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
+ptsac_2_1 = newp; Point(ptsac_2_1) = { p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
 
 
-tmpac_2_1[] = Extrude {{y1SPWindFac2,0,0}, {-1,0,0}, { p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle1*alpha } {
+tmpac_2_1[] = Extrude {{y1SPWindFac2,0,0}, {-1,0,0}, { p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle1*alpha } {
   Surface{tmpab_2_1[0]};
 };
 
@@ -476,10 +474,10 @@ sac_2_1[] += tmpac_2_1[{2:4}];
 // sac2_2_1[] += tmpac2_2_1[{2:4}];
 
 
-ptsad_2_1 = newp; Point(ptsad_2_1) = { p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
+ptsad_2_1 = newp; Point(ptsad_2_1) = { p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
 
 
-tmpad_2_1[] = Extrude {{y1SPWindFac2,0,0}, {-1,0,0}, { p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle2*alpha} {
+tmpad_2_1[] = Extrude {{y1SPWindFac2,0,0}, {-1,0,0}, { p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle2*alpha} {
   Surface{tmpac_2_1[0]};
 };
 
@@ -501,10 +499,10 @@ sad_2_1[] += tmpad_2_1[{2:4}];
 // sab_2_2[] += tmpab_2_2[{2:4}];
 
 
-ptsac_2_2 = newp; Point(ptsac_2_2) = { p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
+ptsac_2_2 = newp; Point(ptsac_2_2) = { p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
 
 
-tmpac_2_2[] = Extrude {{y1SPWindFac2,0,0}, {1,0,0}, { p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle3*alpha} {
+tmpac_2_2[] = Extrude {{y1SPWindFac2,0,0}, {1,0,0}, { p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle3*alpha} {
   Surface{tmpad_2_1[0]};
 };
 
@@ -520,10 +518,10 @@ sac_2_2[] += tmpac_2_2[{2:4}];
 // sac2_2_2[] += tmpac2_2_2[{2:4}];
 
 
-ptsad_2_2 = newp; Point(ptsad_2_2) = { p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
+ptsad_2_2 = newp; Point(ptsad_2_2) = { p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 };
 
 
-tmpad_2_2[] = Extrude {{y1SPWindFac2,0,0}, {1,0,0},{ p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle4*alpha} {
+tmpad_2_2[] = Extrude {{y1SPWindFac2,0,0}, {1,0,0},{ p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y1SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y1SPWindFac +0.00*spFacStr2 }, y1fracAngle4*alpha} {
   Surface{tmpac_2_2[0]};
 };
 
@@ -556,11 +554,11 @@ Physical Surface(physsurf_2a_wire) = { -saaf_2_2_1[0], sab_2_1[], sac_2_1[], sad
 // Wire 2b1
 
 
-p2b1_0 = newp; Point(p2b1_0) = {-p+p,-p+p,-rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};                                             // centre circle
-p2b1_1 = newp; Point(p2b1_1) = {-p+p,-p+p,-2*rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};                                           // bottom circle
-p2b1_2 = newp; Point(p2b1_2) = {-p+p+rW,-p+p,-rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};                                          // right circle
-p2b1_3 = newp; Point(p2b1_3) = {-p+p,-p+p,0+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};                                               // top circle
-// p2b1_4 = newp; Point(p2b1_4) = {-p+p-rW,-p+p,-rW+meshLevel*mm -5.00*sp2FacR1Ad, lcWireMesh * mm};                                       // left circle
+p2b1_0 = newp; Point(p2b1_0) = {-p+p,-p+p,-rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};                              // centre circle
+p2b1_1 = newp; Point(p2b1_1) = {-p+p,-p+p,-2*rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};                            // bottom circle
+p2b1_2 = newp; Point(p2b1_2) = {-p+p+rW,-p+p,-rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};                           // right circle
+p2b1_3 = newp; Point(p2b1_3) = {-p+p,-p+p,0+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};                                // top circle
+// p2b1_4 = newp; Point(p2b1_4) = {-p+p-rW,-p+p,-rW+meshLevel*mm +3.00*sp2FacR1Ad, lcWireMesh * mm};                        // left circle
 
 l2b1_1 = newl; Circle(l2b1_1) = {p2b1_1, p2b1_0, p2b1_2};
 l2b1_2 = newl; Circle(l2b1_2) = {p2b1_2, p2b1_0, p2b1_3};
@@ -581,10 +579,10 @@ sbb_2_1[] = {};
 sbb_2_1[] += tmpbb_2_1[{2:4}];
 
 
-ptsbc_2_1 = newp; Point(ptsbc_2_1) = { p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
+ptsbc_2_1 = newp; Point(ptsbc_2_1) = { p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
 
 
-tmpbc_2_1[] = Extrude {{y2SPWindFac2,0,0}, {1,0,0}, { p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle1*alpha } {
+tmpbc_2_1[] = Extrude {{y2SPWindFac2,0,0}, {1,0,0}, { p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle1*alpha } {
   Surface{tmpbb_2_1[0]};
 };
 
@@ -600,10 +598,10 @@ sbc_2_1[] += tmpbc_2_1[{2:4}];
 // sbc2_2_1[] += tmpbc2_2_1[{2:4}];
 
 
-ptsbd_2_1 = newp; Point(ptsbd_2_1) = { p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
+ptsbd_2_1 = newp; Point(ptsbd_2_1) = { p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
 
 
-tmpbd_2_1[] = Extrude {{y2SPWindFac2,0,0}, {1,0,0}, { p+p +2.00*p*exPand +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle2*alpha} {
+tmpbd_2_1[] = Extrude {{y2SPWindFac2,0,0}, {1,0,0}, { p+p +2.00*p +0.00*spFac1, -p+p +0.00*p +1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, -Rtn+rW +1.00*meshLevel*mm +1.00*sp2FacR1 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle2*alpha} {
   Surface{tmpbc_2_1[0]};
 };
 
@@ -625,10 +623,10 @@ sbd_2_1[] += tmpbd_2_1[{2:4}];
 // sbb_2_2[] += tmpbb_2_2[{2:4}];
 
 
-ptsbc_2_2 = newp; Point(ptsbc_2_2) = { p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
+ptsbc_2_2 = newp; Point(ptsbc_2_2) = { p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
 
 
-tmpbc_2_2[] = Extrude {{y2SPWindFac2,0,0}, {-1,0,0}, { p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle3*alpha} {
+tmpbc_2_2[] = Extrude {{y2SPWindFac2,0,0}, {-1,0,0}, { p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle3*alpha} {
   Surface{tmpbd_2_1[0]};
 };
 
@@ -644,10 +642,10 @@ sbc_2_2[] += tmpbc_2_2[{2:4}];
 // sbc2_2_2[] += tmpbc2_2_2[{2:4}];
 
 
-ptsbd_2_2 = newp; Point(ptsbd_2_2) = { p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
+ptsbd_2_2 = newp; Point(ptsbd_2_2) = { p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 };
 
 
-tmpbd_2_2[] = Extrude {{y2SPWindFac2,0,0}, {-1,0,0},{ p+p +2.00*p*exPand +0.00*spFac1, p+p +2.00*p*exPand -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle4*alpha} {
+tmpbd_2_2[] = Extrude {{y2SPWindFac2,0,0}, {-1,0,0},{ p+p +2.00*p +0.00*spFac1, p+p +2.00*p -1.00*y2SPWindFac +0.00*R*Cos(alpha/2) +0.00*spFac1 +0.00*spFacStr1, Rtp-rW +1.00*meshLevel*mm +1.00*sp2FacR2 +0.00*R*Sin(alpha/2) +0.00*y2SPWindFac +0.00*spFacStr2 }, y2fracAngle4*alpha} {
   Surface{tmpbc_2_2[0]};
 };
 
@@ -682,4 +680,3 @@ Include "mmGasUnitCellTestWindowDefinition.geo";
 Include "mmGasUnitCellTestLineDefinition.geo";
 
 // End
-
