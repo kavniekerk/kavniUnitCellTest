@@ -1,0 +1,373 @@
+!
+! curvedStraightWire2ThirdLayerConstant.sif
+!
+! ElmerSolver input file for solution of MicroMegas Simulation
+!
+
+
+! constants
+!!!!!!!!!!!!!!!!!!!!!!!!!! Constants !!!!!!!!!!!!!!!!!!!!!!!!!!!
+! constants
+
+Check Keywords Warn
+
+! Set drift distance, E fields, and voltage
+! dist: distance in cm
+! Edrift: drift field in V/cm
+! Etrans: transfer field in V/cm
+! deltaV: voltage (in V)
+
+$ldist = 0.01
+$udist = 0.05
+$Edrift = 1000
+$Etrans = 40000
+$deltaV = 0
+
+$WTuel = -2000
+$WTucp = -400
+$WTlcp = 0
+$WTlel = 0
+
+! header
+Header
+  CHECK KEYWORDS Warn
+  Mesh DB "." "curvedStraightWire2ThirdLayerConstant"
+  Include Path ""
+  Results Directory ""
+End
+
+
+! parameters
+!!!!!!!!!!!!!!!!!!!!!!!!!! Simulation parameters !!!!!!!!!!!!!!!!!!!!!!!!!!!
+! simulation
+
+Simulation
+  Max Output Level = 100
+  Coordinate System = Cartesian 3D
+  Simulation Type = Steady State
+  Steady State Max Iterations = 1
+  Output File = "curvedStraightWire2ThirdLayerConstant.result"
+  Post File = "curvedStraightWire2ThirdLayerConstant.vtu"
+  Coordinate Scaling = 1
+End
+
+! constants
+Constants
+  Permittivity Of Vacuum = 8.8542e-12
+End
+
+
+! parameters
+!!!!!!!!!!!!!!!!!!!!!!!!!! Solver parameters !!!!!!!!!!!!!!!!!!!!!!!!!!!
+! solver
+
+! solver electrostatics calculation
+Solver 1
+  Equation = Stat Elec Solver
+  Variable = Potential
+  Variable DOFs = 1
+  Procedure = "StatElecSolve" "StatElecSolver"
+
+  Calculate Electric Field = TRUE
+  Calculate Electric Flux = TRUE
+
+  Linear System Solver = Iterative
+  Linear System Iterative Method = BiCGStab
+  Linear System Max Iterations = 50
+  Linear System Abort Not Converged = TRUE
+  Linear System Convergence Tolerance = 1.0e-3
+  Linear System Preconditioning = ILU1
+
+  Steady State Convergence Tolerance = 1.0e-3
+  Adaptive Mesh Refinement = TRUE
+  Adaptive Remesh = TRUE
+  Adaptive Save Mesh = TRUE
+  Adaptive Error Limit = 0.5e-01
+End
+
+! solver for magnetic vector potential A [Vs/m] 
+Solver 2
+    Equation = "MGDynamics"
+    Procedure = "MagnetoDynamics" "WhitneyAVSolver" 
+    Variable = "AV"
+ 
+    ! Apply Mortar BCs = Logical TRUE
+    ! Fix Input Current Density = Logical TRUE
+    
+    Nonlinear System Convergence Tolerance = 1.0e-3 
+    Nonlinear System Max Iterations = 50 
+    Nonlinear System Relaxation Factor = 1 
+    Newton-Raphson Iteration = Logical TRUE
+  
+    Linear System Solver = Direct 
+    Linear System Direct Method = UMFPACK
+    Linear System Symmetric = Logical TRUE
+    Linear System Solver = "Iterative"
+    Linear System Preconditioning = None
+    Linear System Convergence Tolerance = 1.0e-3
+    Linear System Residual Output = 100
+    Linear System Max Iterations = 50
+    Linear System Iterative Method = CG   
+
+    ! CG CGS BiCGStab l TFQMR GMRES GCR
+End 
+
+! magnetohydrodynamics calculation
+Solver 3
+    Equation = "MGDynamicsCalc"
+    Procedure = "MagnetoDynamics" "MagnetoDynamicsCalcFields"
+    Linear System Symmetric = TRUE
+    Potential Variable = "AV"
+    ! Apply Mortar BCs = Logical TRUE
+
+    Calculate Magnetic Field Strength = Logical TRUE
+    Calculate Current Density = Logical TRUE
+    Calculate nodal forces = logical TRUE
+    Calculate Magnetic Vector Potential = Logical TRUE
+   
+    Linear System Solver = Direct 
+    Linear System Direct Method = UMFPACK
+    Linear System Solver = "Iterative"
+    Linear System Preconditioning = None
+    Linear System Residual Output = 100
+    Linear System Max Iterations = 50
+    Linear System Iterative Method = CG
+    Steady State Convergence Tolerance = 1.0e-3
+    Linear System Convergence Tolerance = 1.0e-3
+End
+
+! vtu format for ParaView with faces' ids 
+Solver 4
+  Equation = Electric Force
+  Procedure = "ElectricForce" "StatElecForce"
+
+  Exec Solver = After all
+  exec interval = 1
+
+  Equation = "ResultOutput"
+  Procedure = "ResultOutputSolve" "ResultOutputSolver"
+  Output File Name = "curvedStraightWire2ThirdLayerConstant_elec_weight."
+  Output Format = "VTU"
+  Scalar Field 1 = Potential
+  Vtu Format = Logical TRUE
+  Binary Output = TRUE
+  Single Precision = TRUE
+  Save Nodal Fields = Logical TRUE
+  Save Geometry Ids = TRUE
+End
+
+
+! parameters
+!!!!!!!!!!!!!!!!!!!!!!!!!! Model parameters !!!!!!!!!!!!!!!!!!!!!!!!!!!
+! simulation
+! equation
+
+Equation 1
+  Name = "ModelDomain"
+  Active Solvers(4) = 1 2 3 4
+  Calculate Electric Energy = TRUE
+End
+
+
+! bodies
+!!!!!!!!!!!!!!!!!!!!!!!!!! Bodies are here !!!!!!!!!!!!!!!!!!!!!!!!!!!
+! physical volumes defined in gmsh
+
+! Wire - physvol_1a_wire - 900000
+Body 1
+  Target Bodies(1) = 1
+  Name = "Wire - 900000"
+  Equation = 1
+  Material = 4
+End
+
+! Wire - physvol_1b_wire - 910000
+Body 2
+  Target Bodies(1) = 2
+  Name = "Wire - 910000"
+  Equation = 1
+  Material = 4
+End
+
+! Wire - physvol_2a_wire - 920000
+Body 3
+  Target Bodies(1) = 3
+  Name = "Wire - 920000"
+  Equation = 1
+  Material = 4
+End
+
+! Wire - physvol_2b_wire - 930000
+Body 4
+  Target Bodies(1) = 4
+  Name = "Wire - 930000"
+  Equation = 1
+  Material = 4
+End
+
+! Detector shell gas - physvol_gas - 960000
+Body 5
+  Target Bodies(1) = 5
+  Name = "Detector shell gas - 960000"
+  Equation = 1
+  Material = 1
+End
+
+! dielectric layer - physvol_dielectric - 980000
+Body 6
+  Target Bodies(1) = 6
+  Name = "dielectric layer - 980000"
+  Equation = 1
+  Material = 2
+End
+
+! Lower copper electrode - physvol_lower_cp - 990000
+Body 7
+  Target Bodies(1) = 7
+  Name = "Lower copper electrode - 990000"
+  Equation = 1
+  Material = 3
+End
+
+! Higher copper electrode - physvol_high_cp - 1000000
+Body 8
+  Target Bodies(1) = 8
+  Name = "Higher copper electrode - 1000000"
+  Equation = 1
+  Material = 3
+End
+
+
+! materials
+!!!!!!!!!!!!!!!!!!!!!!!!!! Materials !!!!!!!!!!!!!!!!!!!!!!!!!!!
+! materials associated with physical volumes defined in gmsh
+
+! Gas
+Material 1
+  Name = "Air (room temperature)"
+  Viscosity = 1.983e-5
+  Heat expansion Coefficient = 3.43e-3
+  Heat Conductivity = 0.0257
+  Relative Permittivity = 1.00059
+  Sound speed = 343.0
+  Heat Capacity = 1005.0
+  Density = 1.205
+End
+
+! Dielectric
+Material 2
+  Name = "Polycarbonate (generic)"
+  Heat expansion Coefficient = 67.0e-6
+  Heat Conductivity = 0.205
+  Relative Permittivity = 3.23
+  Heat Capacity = 1250.0
+  Mesh Poisson ratio = 0.37
+  Density = 1220.0
+  Poisson ratio = 0.37
+  Youngs modulus = 2.2e9
+End
+
+! Copper
+Material 2
+  Name = "Copper (generic)"
+  Heat expansion Coefficient = 16.5e-6
+  Heat Conductivity = 401.0
+  Relative Permittivity = 1e10
+  Sound speed = 3810.0
+  Heat Capacity = 385.0
+  Mesh Poisson ratio = 0.34
+  Density = 8960.0
+  Poisson ratio = 0.34
+  Youngs modulus = 115.0e9
+End
+
+! Steel
+Material 3
+  Name = "Steel (alloy - generic)"
+  Heat expansion Coefficient = 12.0e-6
+  Heat Conductivity = 37.2
+  Relative Permittivity = 1e10
+  Sound speed = 5100.0
+  Heat Capacity = 976.0
+  Mesh Poisson ratio = 0.285
+  Density = 7850.0
+  Poisson ratio = 0.285
+  Youngs modulus = 200.0e9
+End
+
+
+! boundary conditions
+!!!!!!!!!!!!!!!!!!!!!!!!!! Boundary conditions !!!!!!!!!!!!!!!!!!!!!!!!!!!
+! initial condition / boundary condition / body force
+! physical surfaces defined in gmsh
+
+! set up boundary conditions for walls perpendicular to some axis
+! detector shell boundary 1 - physsurf_bd1h1 700000
+Boundary Condition 1
+  Target Boundaries(1) = 1
+  Name = "Periodic Edge 1"
+End
+
+! link to the opposing wall
+! detector shell boundary 2 - physsurf_bd1h2 710000
+Boundary Condition 2
+  Target Boundaries(1) = 3
+  Name = "Periodic Edge 2"
+  Periodic BC = 1
+End
+
+! set up boundary conditions for walls perpendicular to some axis
+! detector shell boundary 3 - physsurf_bd2h1 720000
+Boundary Condition 3
+  Target Boundaries(1) = 2
+  Name = "Periodic Edge 3"
+End
+
+! link to the opposing wall
+! detector shell boundary 4 - physsurf_bd2h2 730000
+Boundary Condition 4
+  Target Boundaries(1) = 4
+  Name = "Periodic Edge 4"
+  Periodic BC = 3
+End
+
+! physsurf_wire 750000, 760000, 770000, 780000
+Boundary Condition 5
+  Target Boundaries(4) = 5 6 7 8
+  Potential = $-1*Etrans*ldist - deltaV + WTucp
+End
+
+! physsurf_dielectric 830000
+Boundary Condition 6
+  Target Boundaries(1) = 10
+  Name = "Dielectric Layer"
+  Potential = $-1*Etrans*ldist + WTlcp
+End
+
+! physsurf_upper_el 850000
+Boundary Condition 7
+  Target Boundaries(1) = 11
+  Name = "Upper Electrode"
+  Potential = $-1*Etrans*ldist - deltaV - Edrift*udist + WTuel
+End
+
+! physsurf_lower_cp 870000
+Boundary Condition 8
+  Target Boundaries(1) = 12
+  Name = "Lower Copper Electrode"
+  Potential = $-1*Etrans*ldist + WTlcp
+End
+
+! physsurf_high_cp 880000
+Boundary Condition 9
+  Target Boundaries(1) = 13
+  Name = "High Copper Electrode"
+  Potential = $-1*Etrans*ldist + WTlcp
+End
+
+
+! End
+
+
+
+
