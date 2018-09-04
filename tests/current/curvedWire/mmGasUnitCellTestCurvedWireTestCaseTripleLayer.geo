@@ -484,44 +484,44 @@ vol_high_cp = newreg; Volume(vol_high_cp) = total_sl_high_cp[];
 //----------------------------------------------------------
 // Physical Surfaces - periodic boundary conditions
 
-physsurf_bdh_1_1 = newreg; Physical Surface(physsurf_bdh_1_1) = { psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b };               
-physsurf_bdh_1_2 = newreg; Physical Surface(physsurf_bdh_1_2) = { psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_1_1_2[0], psbdh_1_2_bsurf3b };               
-physsurf_bdh_2_1 = newreg; Physical Surface(physsurf_bdh_2_1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b };               
-physsurf_bdh_2_2 = newreg; Physical Surface(physsurf_bdh_2_2) = { psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_1_1_2[0], psbdh_2_2_bsurf6b };               
+Physical Surface(physsurf_bd1h1) = { psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b };               
+Physical Surface(physsurf_bd1h2) = { psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_1_1_2[0], psbdh_1_2_bsurf3b };               
+Physical Surface(physsurf_bd2h1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b };               
+Physical Surface(physsurf_bd2h2) = { psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_1_1_2[0], psbdh_2_2_bsurf6b };               
 
 //----------------------------------------------------------
 // Physical surfaces - container surface
 
-physsurf_container = newreg; Physical Surface(physsurf_container) = { surfBottomCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_1_1_2[0], psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_1_1_2[0], psbdh_2_2_bsurf6b, psBsurfT };
+// Physical Surface(physsurf_container) = { surfBottomCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_1_1_2[0], psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_1_1_2[0], psbdh_2_2_bsurf6b, psBsurfT };
 
 //----------------------------------------------------------
 // Physical surfaces - wire surface
 
-// physsurf_wire = newreg; Physical Surface(physsurf_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_1_1_2[0], sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_1_1_2[0], saaf_2_2_1[], sab_2_1[], sab_2_2[], sabf_2_2_2[], sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
-// physsurf_wire = newreg; Physical Surface(physsurf_wire) = { physsurf_1a_wire, physsurf_1b_wire, physsurf_2a_wire, physsurf_2b_wire };
+// Physical Surface(physsurf_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_1_1_2[0], sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_1_1_2[0], saaf_2_2_1[], sab_2_1[], sab_2_2[], sabf_2_2_2[], sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
+// Physical Surface(physsurf_wire) = { physsurf_1a_wire, physsurf_1b_wire, physsurf_2a_wire, physsurf_2b_wire };
 
 //----------------------------------------------------------
 // Physical surfaces - gas exterior / interior surface
 
-physsurf_gas = newreg; Physical Surface(physsurf_gas) = { psBsurfT, psbdh_1_1_bsurf1t, psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, psbdh_2_2_bsurf6b, -surfTopCp2[], -sab_1_1[0], -sab_1_1[1], -sab_1_2[0], -sab_1_2[1], -sbb_1_1[0], -sbb_1_1[1], -sbb_1_2[0], -sbb_1_2[1], -sab_2_1[0], -sab_2_1[1], -sab_2_2[0], -sab_2_2[1], -sbb_2_1[0], -sbb_2_1[1], -sbb_2_2[0], -sbb_2_2[1] };
+Physical Surface(physsurf_gas) = { psBsurfT, psbdh_1_1_bsurf1t, psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, psbdh_2_2_bsurf6b, -surfTopCp2[], -sab_1_1[0], -sab_1_1[1], -sab_1_2[0], -sab_1_2[1], -sbb_1_1[0], -sbb_1_1[1], -sbb_1_2[0], -sbb_1_2[1], -sab_2_1[0], -sab_2_1[1], -sab_2_2[0], -sab_2_2[1], -sbb_2_1[0], -sbb_2_1[1], -sbb_2_2[0], -sbb_2_2[1] };
 // Physical Surface(physsurf_gas) = { physsurf_container, -physsurf_x1_wire, -physsurf_x2_wire, -physsurf_y1_wire, -physsurf_y2_wire };
 
 //----------------------------------------------------------
 // Physical surfaces - dielectric surface
 
-// physsurf_dielectric = newreg; Physical Surface(physsurf_dielectric) = total_sl_dielectric[];
-physsurf_dielectric = newreg; Physical Surface(physsurf_dielectric) = { surfTopCp1[], psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, surfBottomCp2[] };
+// Physical Surface(physsurf_dielectric) = total_sl_dielectric[];
+Physical Surface(physsurf_dielectric) = { surfTopCp1[], psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, surfBottomCp2[] };
 
 //----------------------------------------------------------
 // Physical surfaces - lower electrode surface
 
-physsurf_lower_cp = newreg; Physical Surface(physsurf_lower_cp) = { surfTopCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, surfBottomCp1[] }; 
-physsurf_high_cp = newreg; Physical Surface(physsurf_high_cp) = { surfTopCp2[], pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, surfBottomCp2[] };
+Physical Surface(physsurf_lower_cp) = { surfTopCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, surfBottomCp1[] }; 
+Physical Surface(physsurf_high_cp) = { surfTopCp2[], pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, surfBottomCp2[] };
 
 //----------------------------------------------------------
 // Physical surfaces - upper electrode surface
 
-physsurf_upper_el = newreg; Physical Surface(physsurf_upper_el) = { psBsurfT };
+Physical Surface(physsurf_upper_el) = { psBsurfT };
 
 
 //------------------------------------------------------------------------------------------
@@ -530,24 +530,24 @@ physsurf_upper_el = newreg; Physical Surface(physsurf_upper_el) = { psBsurfT };
 //----------------------------------------------------------
 // Physical Volumes - Container Volume
 
-physvol_container = newreg; Physical Volume(physvol_container) = vol_container;
+// Physical Volume(physvol_container) = vol_container;
 
 //----------------------------------------------------------
 // Physical Volumes - Wire Volume
 
-// physvol_wire = newreg; Physical Volume(physvol_wire) = total_vol_wire;
+// Physical Volume(physvol_wire) = total_vol_wire;
 
 //----------------------------------------------------------
 // Physical Volumes - Gas Volume
 
-physvol_gas = newreg; Physical Volume(physvol_gas) = { vol_gas };
+Physical Volume(physvol_gas) = { vol_gas };
 
 //----------------------------------------------------------
 // Physical Volumes - Component Volumes
 
-physvol_dielectric = newreg; Physical Volume(physvol_dielectric) = { vol_dielectric };
-physvol_lower_cp = newreg; Physical Volume(physvol_lower_cp) = { vol_lower_cp };
-physvol_high_cp = newreg; Physical Volume(physvol_high_cp) = { vol_high_cp };
+Physical Volume(physvol_dielectric) = { vol_dielectric };
+Physical Volume(physvol_lower_cp) = { vol_lower_cp };
+Physical Volume(physvol_high_cp) = { vol_high_cp };
 
 
 //----------------------------------------------------------

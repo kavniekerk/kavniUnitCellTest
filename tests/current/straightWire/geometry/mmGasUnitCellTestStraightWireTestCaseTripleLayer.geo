@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 
-// mmGasUnitCellTestStraightWireTestCaseSingleLayer.geo
+// mmGasUnitCellTestStraightWireTestCaseTripleLayer.geo
 //
 // Description:
 // Geometry file for a MM cell
@@ -9,8 +9,6 @@
 //
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
-// check update again
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// HEADER FILES
 //
@@ -18,9 +16,8 @@
 Include "mmGasComponentLabel.pro";
 // Include "mmGasMeshingOptions.pro";
 
-Include "mmGasUnitCellTestShellStructureSingleLayer.geo";
-// Include "mmGasUnitCellTestShellStructureTripleLayer.geo";
-
+// Include "mmGasUnitCellTestShellStructureSingleLayer.geo";
+Include "mmGasUnitCellTestShellStructureTripleLayer.geo";
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// MMGASSTRWIRE GEOMETRY MODULE
@@ -29,7 +26,7 @@ Include "mmGasUnitCellTestShellStructureSingleLayer.geo";
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /// GENERAL INFORMATION
 //
-// mmGasUnitCellTestStraightWireTestCaseSingleLayer.geo
+// mmGasUnitCellTestStraightWireTestCaseTripleLayer.geo
 //
 // Description
 //
@@ -185,6 +182,7 @@ sbb_1_1[] += tmpbb_1_1[{2:4}];
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Wire 1b2
 
+
 tmpbb_1_2[] = Extrude {a/2, 0, 0} { Surface{ tmpbb_1_1[0] }; Recombine;
 };
 
@@ -236,6 +234,7 @@ sab_2_1[] += tmpab_2_1[{2:4}];
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Wire 2a2
+
 
 tmpab_2_2[] = Extrude {0, -a/2, 0} { Surface{ tmpab_2_1[0] }; Recombine;
 };
@@ -294,6 +293,7 @@ sbb_2_1[] += tmpbb_2_1[{2:4}];
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Wire 2b2
 
+
 tmpbb_2_2[] = Extrude {0, a/2, 0} { Surface{ tmpbb_2_1[0] }; Recombine;
 };
 
@@ -336,11 +336,11 @@ Include "mmGasUnitCellTestLineDefinition.geo";
 
 l1bdh_1_1_bsurft1 = newl; Line(l1bdh_1_1_bsurft1) = {pexet2, pbdhbbt_1_1_2[1]};                    // top line
 l2bdh_1_1_bsurft1 = newl; Line(l2bdh_1_1_bsurft1) = {pexet1, p1b1_3};                              // bottom circle
-l1bdh_1_1_bsurfb1 = newl; Line(l1bdh_1_1_bsurfb1) = {ptl2c2, pbdhabt_1_2_2[1]};                    // bottom line
-l2bdh_1_1_bsurfb1 = newl; Line(l2bdh_1_1_bsurfb1) = {ptl2c1, p2b1_1};                              // bottom circle
+l1bdh_1_1_bsurfb1 = newl; Line(l1bdh_1_1_bsurfb1) = {ptl4c2, pbdhabt_1_2_2[1]};                    // bottom line
+l2bdh_1_1_bsurfb1 = newl; Line(l2bdh_1_1_bsurfb1) = {ptl4c1, p2b1_1};                              // bottom circle
 
 llbdh_1_1_bsurf1t = newreg; Line Loop(llbdh_1_1_bsurf1t) = { lexet1, l1bdh_1_1_bsurft1, -ll_bdhbbt_1_1_2[0], -ll_bdhbbt_1_1_1[0], -l2bdh_1_1_bsurft1 };
-llbdh_1_1_bsurf1b = newreg; Line Loop(llbdh_1_1_bsurf1b) = { lcpbub1a, l1bdh_1_1_bsurfb1, -ll_bdhabc0_1_2_2[0], -ll_bdhabc1_1_2_2[0], -ll_bdhbbb_1_1_1[0], -ll_bdhbbb_1_1_2[0], -l2b1_2, -l2b1_1, -l2bdh_1_1_bsurfb1 };
+llbdh_1_1_bsurf1b = newreg; Line Loop(llbdh_1_1_bsurf1b) = { lcptub1a, l1bdh_1_1_bsurfb1, -ll_bdhabc0_1_2_2[0], -ll_bdhabc1_1_2_2[0], -ll_bdhbbb_1_1_1[0], -ll_bdhbbb_1_1_2[0], -l2b1_2, -l2b1_1, -l2bdh_1_1_bsurfb1 };
 
 psbdh_1_1_bsurf1t = newreg; Plane Surface(psbdh_1_1_bsurf1t) = { llbdh_1_1_bsurf1t };
 psbdh_1_1_bsurf1b = newreg; Plane Surface(psbdh_1_1_bsurf1b) = { llbdh_1_1_bsurf1b };
@@ -350,10 +350,10 @@ psbdh_1_1_bsurf1b = newreg; Plane Surface(psbdh_1_1_bsurf1b) = { llbdh_1_1_bsurf
 // Face physsurfBdh_1_2 (Corner 2 - Corner 3)
 
 l1bdh_1_2_bsurft1 = newl; Line(l1bdh_1_2_bsurft1) = {pexet3, p1a1_3};                              // top line
-l1bdh_1_2_bsurfb1 = newl; Line(l1bdh_1_2_bsurfb1) = {ptl2c3, p2a1_1};                              // bottom line
+l1bdh_1_2_bsurfb1 = newl; Line(l1bdh_1_2_bsurfb1) = {ptl4c3, p2a1_1};                              // bottom line
 
 llbdh_1_2_bsurf3t = newreg; Line Loop(llbdh_1_2_bsurf3t) = { lexet2, l1bdh_1_2_bsurft1, l1a1_2, l1a1_3, ll_bdhabb_1_2_2[0], ll_bdhabb_1_2_1[0], ll_bdhbbc0_1_1_2[0], ll_bdhbbc1_1_1_2[0], -l1bdh_1_1_bsurft1 };
-llbdh_1_2_bsurf3b = newreg; Line Loop(llbdh_1_2_bsurf3b) = { lcpbub2a, l1bdh_1_2_bsurfb1, ll_bdhabt_1_2_2[0], ll_bdhabt_1_2_1[0], -l1bdh_1_1_bsurfb1 };
+llbdh_1_2_bsurf3b = newreg; Line Loop(llbdh_1_2_bsurf3b) = { lcptub2a, l1bdh_1_2_bsurfb1, ll_bdhabt_1_2_2[0], ll_bdhabt_1_2_1[0], -l1bdh_1_1_bsurfb1 };
 
 psbdh_1_2_bsurf3t = newreg; Plane Surface(psbdh_1_2_bsurf3t) = { llbdh_1_2_bsurf3t };
 psbdh_1_2_bsurf3b = newreg; Plane Surface(psbdh_1_2_bsurf3b) = { llbdh_1_2_bsurf3b };
@@ -363,11 +363,11 @@ psbdh_1_2_bsurf3b = newreg; Plane Surface(psbdh_1_2_bsurf3b) = { llbdh_1_2_bsurf
 // Face physsurfBdh_2_1 (Corner 3 - Corner 4)
 
 l1bdh_2_1_bsurft4 = newl; Line(l1bdh_2_1_bsurft4) = {pexet4, pbdhabt_2_1_2[1]};                    // top line, top circle
-l1bdh_2_1_bsurfb4 = newl; Line(l1bdh_2_1_bsurfb4) = {ptl2c4, pbdhbbt_2_2_2[1]};                    // bottom line, bottom circle
+l1bdh_2_1_bsurfb4 = newl; Line(l1bdh_2_1_bsurfb4) = {ptl4c4, pbdhbbt_2_2_2[1]};                    // bottom line, bottom circle
 
 
 llbdh_2_1_bsurf4t = newreg; Line Loop(llbdh_2_1_bsurf4t) = { lexet3, l1bdh_2_1_bsurft4, -ll_bdhabt_2_1_2[0], -ll_bdhabt_2_1_1[0], -l1bdh_1_2_bsurft1 };
-llbdh_2_1_bsurf4b = newreg; Line Loop(llbdh_2_1_bsurf4b) = { lcpbub3a, l1bdh_2_1_bsurfb4, ll_bdhbbc0_2_2_2[0], ll_bdhbbc1_2_2_2[0], -ll_bdhabb_2_1_2[0], -ll_bdhabb_2_1_1[0], l2a1_2, l2a1_3, -l1bdh_1_2_bsurfb1 };
+llbdh_2_1_bsurf4b = newreg; Line Loop(llbdh_2_1_bsurf4b) = { lcptub3a, l1bdh_2_1_bsurfb4, ll_bdhbbc0_2_2_2[0], ll_bdhbbc1_2_2_2[0], -ll_bdhabb_2_1_2[0], -ll_bdhabb_2_1_1[0], l2a1_2, l2a1_3, -l1bdh_1_2_bsurfb1 };
 
 psbdh_2_1_bsurf4t = newreg; Plane Surface(psbdh_2_1_bsurf4t) = { llbdh_2_1_bsurf4t };
 psbdh_2_1_bsurf4b = newreg; Plane Surface(psbdh_2_1_bsurf4b) = { llbdh_2_1_bsurf4b };
@@ -377,7 +377,7 @@ psbdh_2_1_bsurf4b = newreg; Plane Surface(psbdh_2_1_bsurf4b) = { llbdh_2_1_bsurf
 // Face physsurfBdh_2_2 (Corner 4 - Corner 1)
 
 llbdh_2_2_bsurf6t = newreg; Line Loop(llbdh_2_2_bsurf6t) = { lexet4, l2bdh_1_1_bsurft1, -l1b1_2, -l1b1_1, ll_bdhbbb_2_2_2[0], ll_bdhbbb_2_2_1[0], -ll_bdhabc0_2_1_2[0], -ll_bdhabc1_2_1_2[0], -l1bdh_2_1_bsurft4 };
-llbdh_2_2_bsurf6b = newreg; Line Loop(llbdh_2_2_bsurf6b) = { lcpbub4a, l2bdh_1_1_bsurfb1, ll_bdhbbt_2_2_1[0], ll_bdhbbt_2_2_2[0], -l1bdh_2_1_bsurfb4 };
+llbdh_2_2_bsurf6b = newreg; Line Loop(llbdh_2_2_bsurf6b) = { lcptub4a, l2bdh_1_1_bsurfb1, ll_bdhbbt_2_2_1[0], ll_bdhbbt_2_2_2[0], -l1bdh_2_1_bsurfb4 };
 
 psbdh_2_2_bsurf6t = newreg; Plane Surface(psbdh_2_2_bsurf6t) = { llbdh_2_2_bsurf6t };
 psbdh_2_2_bsurf6b = newreg; Plane Surface(psbdh_2_2_bsurf6b) = { llbdh_2_2_bsurf6b };
@@ -393,20 +393,19 @@ psbdh_2_2_bsurf6b = newreg; Plane Surface(psbdh_2_2_bsurf6b) = { llbdh_2_2_bsurf
 //----------------------------------------------------------
 // Wire Gas Exterior Surface Loop - exterior wire gas surface loop
 
-sl_wire_gas_total_surface = newreg; Surface Loop(sl_wire_gas_total_surface) = { psBsurfT, psbdh_1_1_bsurf1t, psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, psbdh_2_2_bsurf6b, -surfTopCp1[], -sab_1_1[0], -sab_1_1[1], -sab_1_2[0], -sab_1_2[1], -sbb_1_1[0], -sbb_1_1[1], -sbb_1_2[0], -sbb_1_2[1], -sab_2_1[0], -sab_2_1[1], -sab_2_2[0], -sab_2_2[1], -sbb_2_1[0], -sbb_2_1[1], -sbb_2_2[0], -sbb_2_2[1] };
+sl_wire_gas_total_surface = newreg; Surface Loop(sl_wire_gas_total_surface) = { psBsurfT, psbdh_1_1_bsurf1t, psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, psbdh_2_2_bsurf6b, -surfTopCp2[], -sab_1_1[0], -sab_1_1[1], -sab_1_2[0], -sab_1_2[1], -sbb_1_1[0], -sbb_1_1[1], -sbb_1_2[0], -sbb_1_2[1], -sab_2_1[0], -sab_2_1[1], -sab_2_2[0], -sab_2_2[1], -sbb_2_1[0], -sbb_2_1[1], -sbb_2_2[0], -sbb_2_2[1] };
 total_sl_wire_gas_total_surface[] += sl_wire_gas_total_surface;
 
 //----------------------------------------------------------
 // Gas Exterior Surface Loop - exterior gas surface loop
 
-total_sl_gas_exterior_surface[0] = newreg; Surface Loop(total_sl_gas_exterior_surface[0]) = { surfBottomCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b, psBsurfT };
-// psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4,
+total_sl_gas_exterior_surface[0] = newreg; Surface Loop(total_sl_gas_exterior_surface[0]) = { surfBottomCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b, psBsurfT };
 
 //----------------------------------------------------------
 // Dielectric Surface Loop - dielectric surface loop
 
-// sl_dielectric = newreg; Surface Loop(sl_dielectric) = { surfTopCp1[], psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, surfBottomCp2[] };
-// total_sl_dielectric[] += sl_dielectric;
+sl_dielectric = newreg; Surface Loop(sl_dielectric) = { surfTopCp1[], psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, surfBottomCp2[] };
+total_sl_dielectric[] += sl_dielectric;
 
 //----------------------------------------------------------
 // Wire Volume Surface Loop - wire electrode
@@ -420,8 +419,8 @@ total_sl_gas_exterior_surface[0] = newreg; Surface Loop(total_sl_gas_exterior_su
 sl_lower_cp = newreg; Surface Loop(sl_lower_cp) = { surfBottomCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, surfTopCp1[] };
 total_sl_lower_cp[] += sl_lower_cp;
 
-// sl_high_cp = newreg; Surface Loop(sl_high_cp) = { surfBottomCp2[], pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, surfTopCp2[] };
-// total_sl_high_cp[] += sl_high_cp;
+sl_high_cp = newreg; Surface Loop(sl_high_cp) = { surfBottomCp2[], pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, surfTopCp2[] };
+total_sl_high_cp[] += sl_high_cp;
 
 
 //------------------------------------------------------------------------------------------
@@ -445,9 +444,9 @@ vol_gas = newreg; Volume(vol_gas) = { total_sl_wire_gas_total_surface[] }; //  s
 //------------------------------------------------------------------------------------------
 /// COMPONENT VOLUMES
 
-// vol_dielectric = newreg; Volume(vol_dielectric) = total_sl_dielectric[];
+vol_dielectric = newreg; Volume(vol_dielectric) = total_sl_dielectric[];
 vol_lower_cp = newreg; Volume(vol_lower_cp) = total_sl_lower_cp[];
-// vol_high_cp = newreg; Volume(vol_high_cp) = total_sl_high_cp[];
+vol_high_cp = newreg; Volume(vol_high_cp) = total_sl_high_cp[];
 
 
 //------------------------------------------------------------------------------------------
@@ -456,45 +455,44 @@ vol_lower_cp = newreg; Volume(vol_lower_cp) = total_sl_lower_cp[];
 //----------------------------------------------------------
 // Physical Surfaces - periodic boundary conditions
 
-physsurf_bdh_1_1 = newreg; Physical Surface(physsurf_bdh_1_1) = { psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b };               
-physsurf_bdh_1_2 = newreg; Physical Surface(physsurf_bdh_1_2) = { psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b };               
-physsurf_bdh_2_1 = newreg; Physical Surface(physsurf_bdh_2_1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b };               
-physsurf_bdh_2_2 = newreg; Physical Surface(physsurf_bdh_2_2) = { psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b };               
+Physical Surface(physsurf_bd1h1) = { psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b };               
+Physical Surface(physsurf_bd1h2) = { psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b };               
+Physical Surface(physsurf_bd2h1) = { psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b };               
+Physical Surface(physsurf_bd2h2) = { psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b };               
 
 //----------------------------------------------------------
 // Physical surfaces - container surface
 
-physsurf_container = newreg; Physical Surface(physsurf_container) = { surfBottomCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b, psBsurfT };
-// psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, 
+Physical Surface(physsurf_container) = { surfBottomCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, psbdh_1_1_bsurf1t, sbaf_2_2_1[0], sbb_1_1[2], sbb_1_2[2], sabf_2_2_2[0], psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, saaf_1_1_1[0], sab_2_1[2], sab_2_2[2], sbbf_2_1_2[0], psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, saaf_2_2_1[0], sab_1_1[2], sab_1_2[2], sbbf_2_2_2[0], psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, sbaf_1_1_1[0], sbb_2_1[2], sbb_2_2[2], sabf_2_1_2[0], psbdh_2_2_bsurf6b, psBsurfT };
 
 //----------------------------------------------------------
 // Physical surfaces - wire surface
 
-// physsurf_wire = newreg; Physical Surface(physsurf_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0], sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0], saaf_2_2_1[], sab_2_1[], sab_2_2[], sabf_2_2_2[], sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
-// physsurf_wire = newreg; Physical Surface(physsurf_wire) = { physsurf_1a_wire, physsurf_1b_wire, physsurf_2a_wire, physsurf_2b_wire };
+// Physical Surface(physsurf_wire) = { saaf_1_1_1[0], sab_1_1[], sab_1_2[], sabf_2_1_2[0], sbaf_1_1_1[0], sbb_1_1[], sbb_1_2[], sbbf_2_1_2[0], saaf_2_2_1[], sab_2_1[], sab_2_2[], sabf_2_2_2[], sbaf_2_2_1[0], sbb_2_1[], sbb_2_2[], sbbf_2_2_2[0] };
+// Physical Surface(physsurf_wire) = { physsurf_1a_wire, physsurf_1b_wire, physsurf_2a_wire, physsurf_2b_wire };
 
 //----------------------------------------------------------
 // Physical surfaces - gas exterior / interior surface
 
-physsurf_gas = newreg; Physical Surface(physsurf_gas) = { psBsurfT, psbdh_1_1_bsurf1t, psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, psbdh_2_2_bsurf6b, -surfTopCp1[], -sab_1_1[0], -sab_1_1[1], -sab_1_2[0], -sab_1_2[1], -sbb_1_1[0], -sbb_1_1[1], -sbb_1_2[0], -sbb_1_2[1], -sab_2_1[0], -sab_2_1[1], -sab_2_2[0], -sab_2_2[1], -sbb_2_1[0], -sbb_2_1[1], -sbb_2_2[0], -sbb_2_2[1] };
+Physical Surface(physsurf_gas) = { psBsurfT, psbdh_1_1_bsurf1t, psbdh_1_1_bsurf1b, psbdh_1_2_bsurf3t, psbdh_1_2_bsurf3b, psbdh_2_1_bsurf4t, psbdh_2_1_bsurf4b, psbdh_2_2_bsurf6t, psbdh_2_2_bsurf6b, -surfTopCp2[], -sab_1_1[0], -sab_1_1[1], -sab_1_2[0], -sab_1_2[1], -sbb_1_1[0], -sbb_1_1[1], -sbb_1_2[0], -sbb_1_2[1], -sab_2_1[0], -sab_2_1[1], -sab_2_2[0], -sab_2_2[1], -sbb_2_1[0], -sbb_2_1[1], -sbb_2_2[0], -sbb_2_2[1] };
 // Physical Surface(physsurf_gas) = { physsurf_container, -physsurf_x1_wire, -physsurf_x2_wire, -physsurf_y1_wire, -physsurf_y2_wire };
 
 //----------------------------------------------------------
 // Physical surfaces - dielectric surface
 
-// physsurf_dielectric = newreg; Physical Surface(physsurf_dielectric) = total_sl_dielectric[];
-// physsurf_dielectric = newreg; Physical Surface(physsurf_dielectric) = { surfTopCp1[], psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, surfBottomCp2[] };
+// Physical Surface(physsurf_dielectric) = total_sl_dielectric[];
+Physical Surface(physsurf_dielectric) = { surfTopCp1[], psSideDielectric1a, psSideDielectric2a, psSideDielectric3a, psSideDielectric4a, surfBottomCp2[] };
 
 //----------------------------------------------------------
 // Physical surfaces - lower electrode surface
 
-physsurf_lower_cp = newreg; Physical Surface(physsurf_lower_cp) = { surfTopCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, surfBottomCp1[] }; 
-// physsurf_high_cp = newreg; Physical Surface(physsurf_high_cp) = { surfTopCp2[], pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, surfBottomCp2[] };
+Physical Surface(physsurf_lower_cp) = { surfTopCp1[], pscpLowBorder1, pscpLowBorder2, pscpLowBorder3, pscpLowBorder4, surfBottomCp1[] }; 
+Physical Surface(physsurf_high_cp) = { surfTopCp2[], pscpUpBorder1, pscpUpBorder2, pscpUpBorder3, pscpUpBorder4, surfBottomCp2[] };
 
 //----------------------------------------------------------
 // Physical surfaces - upper electrode surface
 
-physsurf_upper_el = newreg; Physical Surface(physsurf_upper_el) = { psBsurfT };
+Physical Surface(physsurf_upper_el) = { psBsurfT };
 
 
 //------------------------------------------------------------------------------------------
@@ -503,25 +501,25 @@ physsurf_upper_el = newreg; Physical Surface(physsurf_upper_el) = { psBsurfT };
 //----------------------------------------------------------
 // Physical Volumes - Container Volume
 
-physvol_container = newreg; Physical Volume(physvol_container) = vol_container;
+Physical Volume(physvol_container) = vol_container;
 
 //----------------------------------------------------------
 // Physical Volumes - Wire Volume
 
-// physvol_wire = newreg; Physical Volume(physvol_wire) = total_vol_wire;
+// Physical Volume(physvol_wire) = total_vol_wire;
 
 //----------------------------------------------------------
 // Physical Volumes - Gas Volume
 
-physvol_gas = newreg; Physical Volume(physvol_gas) = { vol_gas };
+Physical Volume(physvol_gas) = { vol_gas };
 // Physical Volume(physvol_gas) = { vol_gas };
 
 //----------------------------------------------------------
 // Physical Volumes - Component Volumes
 
-// physvol_dielectric = newreg; Physical Volume(physvol_dielectric) = { vol_dielectric };
-physvol_lower_cp = newreg; Physical Volume(physvol_lower_cp) = { vol_lower_cp };
-// physvol_high_cp = newreg; Physical Volume(physvol_high_cp) = { vol_high_cp };
+Physical Volume(physvol_dielectric) = { vol_dielectric };
+Physical Volume(physvol_lower_cp) = { vol_lower_cp };
+Physical Volume(physvol_high_cp) = { vol_high_cp };
 
 
 //----------------------------------------------------------
