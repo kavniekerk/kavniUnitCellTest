@@ -1,5 +1,5 @@
 !
-! curvedStraightWire2Constant.sif
+! curvedWireExtreme2SingleLayerConstant.sif
 !
 ! ElmerSolver input file for solution of MicroMegas Simulation
 !
@@ -23,11 +23,11 @@ Simulation
   Coordinate System = Cartesian 3D
   Simulation Type = Steady
   Steady State Max Iterations = 1
-  Output File = "curvedStraightWire2Constant.result"
+  Output File = "curvedWireExtreme2SingleLayerConstant.result"
   Coordinate Scaling = 1
-  Solver Input File = curvedStraightWire2Constant.sif
+  Solver Input File = curvedWireExtreme2SingleLayerConstant.sif
 
-  Post File = curvedStraightWire2Constant.vtu
+  Post File = curvedWireExtreme2SingleLayerConstant.vtu
 End
 
 Constants
@@ -122,7 +122,7 @@ Solver 2
   exec interval = 1
   Equation = "ResultOutput"
   Procedure = "ResultOutputSolve" "ResultOutputSolver"
-  Output File Name = "curvedStraightWire2Constant."
+  Output File Name = "curvedWireExtreme2SingleLayerConstant."
   Output Format = "VTU"
   Vtu Format = Logical TRUE
   Scalar Field 1 = Potential

@@ -1,5 +1,5 @@
 !
-! curvedStraightWire2ThirdLayerConstant.sif
+! curvedWireThirdLayerConstant.sif
 !
 ! ElmerSolver input file for solution of MicroMegas Simulation
 !
@@ -13,7 +13,7 @@ Check Keywords Warn
 
 Header
   CHECK KEYWORDS Warn
-  Mesh DB "." "curvedStraightWire2ThirdLayerConstant"
+  Mesh DB "." "curvedWireThirdLayerConstant"
   Include Path ""
   Results Directory ""
 End
@@ -23,11 +23,11 @@ Simulation
   Coordinate System = Cartesian 3D
   Simulation Type = Steady
   Steady State Max Iterations = 1
-  Output File = "curvedStraightWire2ThirdLayerConstant.result"
+  Output File = "curvedWireThirdLayerConstant.result"
   Coordinate Scaling = 1
-  Solver Input File = curvedStraightWire2ThirdLayerConstant.sif
+  Solver Input File = curvedWireThirdLayerConstant.sif
 
-  Post File = curvedStraightWire2ThirdLayerConstant.vtu
+  Post File = curvedWireThirdLayerConstant.vtu
 End
 
 Constants
@@ -83,10 +83,10 @@ Body 5
   Material = 1
 End
 
-! dielectric layer - physvol_dielectric - 980000
+! Dielectric layer - physvol_dielectric - 980000
 Body 6
   Target Bodies(1) = 6
-  Name = "dielectric layer - 980000"
+  Name = "Dielectric layer - 980000"
   Equation = 1
   Material = 2
 End
@@ -138,7 +138,7 @@ Solver 2
   exec interval = 1
   Equation = "ResultOutput"
   Procedure = "ResultOutputSolve" "ResultOutputSolver"
-  Output File Name = "curvedStraightWire2ThirdLayerConstant."
+  Output File Name = "curvedWireThirdLayerConstant."
   Output Format = "VTU"
   Vtu Format = Logical TRUE
   Scalar Field 1 = Potential

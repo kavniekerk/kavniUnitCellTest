@@ -1,5 +1,5 @@
 !
-! straightWireConstant.sif
+! straightWireSingleLayerEquation.sif
 !
 ! ElmerSolver input file for solution of MicroMegas Simulation
 !
@@ -31,7 +31,7 @@ $WTlel = 0
 ! header
 Header
   CHECK KEYWORDS Warn
-  Mesh DB "." "straightWireConstant"
+  Mesh DB "." "straightWireSingleLayerEquation"
   Include Path ""
   Results Directory ""
 End
@@ -46,8 +46,8 @@ Simulation
   Coordinate System = Cartesian 3D
   Simulation Type = Steady State
   Steady State Max Iterations = 1
-  Output File = "straightWireConstant.result"
-  Post File = "straightWireConstant.vtu"
+  Output File = "straightWireSingleLayerEquation.result"
+  Post File = "straightWireSingleLayerEquation.vtu"
   Coordinate Scaling = 1
 End
 
@@ -146,7 +146,7 @@ Solver 4
 
   Equation = "ResultOutput"
   Procedure = "ResultOutputSolve" "ResultOutputSolver"
-  Output File Name = "straightWireConstant_elec_weight."
+  Output File Name = "straightWireSingleLayerEquation_elec_weight."
   Output Format = "VTU"
   Scalar Field 1 = Potential
   Vtu Format = Logical TRUE

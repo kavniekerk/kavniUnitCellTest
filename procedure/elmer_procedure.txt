@@ -98,7 +98,7 @@ cd ParaView-5.0.1-Qt4-OpenGL2-MPI-Linux-64bit/bin
 # once it appears, look down the left window and find the drop down list with the 'potential' option and click on this
 # you should see the electromagnetic field, with a legend to give guidance
 
-# try the other .sif files if you wish, or alter to recommendations.
+# try the other .sif files if you wish, or alter to recommendations
 
 ## repeat the procedure for all the other directories, by just altering the filenames are required
 
@@ -110,7 +110,6 @@ test
 ## test 1:
 
 ## generate the mesh with gmsh
-
 
 ElmerGrid 14 2 .msh -autoclean
 ElmerGUI

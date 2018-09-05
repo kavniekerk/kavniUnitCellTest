@@ -1,5 +1,5 @@
 !
-! straightWireConstant.sif
+! straightWireSingleLayerConstant.sif
 !
 ! ElmerSolver input file for solution of MicroMegas Simulation
 !
@@ -23,11 +23,11 @@ Simulation
   Coordinate System = Cartesian 3D
   Simulation Type = Steady
   Steady State Max Iterations = 1
-  Output File = "straightWireConstant.result"
+  Output File = "straightWireSingleLayerConstant.result"
   Coordinate Scaling = 1
-  Solver Input File = straightWireConstant.sif
+  Solver Input File = straightWireSingleLayerConstant.sif
 
-  Post File = straightWireConstant.vtu
+  Post File = straightWireSingleLayerConstant.vtu
 End
 
 Constants
@@ -122,7 +122,7 @@ Solver 2
   exec interval = 1
   Equation = "ResultOutput"
   Procedure = "ResultOutputSolve" "ResultOutputSolver"
-  Output File Name = "straightWireConstant."
+  Output File Name = "straightWireSingleLayerConstant."
   Output Format = "VTU"
   Vtu Format = Logical TRUE
   Scalar Field 1 = Potential
